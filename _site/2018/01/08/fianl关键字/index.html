@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title><strong>final</strong>关键字 &mdash; Elvis Liu</title>
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/">
+    <link rel="alternate" type="application/atom+xml" title="Elvis Liu" href="http://localhost:4000/feed.xml">
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    
+    <meta property="og:title" content="<strong>final</strong>关键字">
+      
+    <meta name="keywords" content="elvisliu">
+    <meta name="og:keywords" content="elvisliu">
+      
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/">
+    <meta property="og:site_name" content="Elvis Liu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-01-08">
+    
+    <script src="http://localhost:4000/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://localhost:4000/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="http://localhost:4000/" title="Elvis Liu"><span class="octicon octicon-mark-github"></span> Elvis Liu</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="http://localhost:4000/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="http://localhost:4000/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="http://localhost:4000/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="http://localhost:4000/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="http://localhost:4000/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="<strong>final</">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header"><strong>final</strong>关键字</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/01/08
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="http://localhost:4000/categories/#Thinking in Java" title="Thinking in Java">Thinking in Java</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <ul id="markdown-toc">
+  <li><a href="#final数据" id="markdown-toc-final数据">final数据</a></li>
+  <li><a href="#final参数" id="markdown-toc-final参数">final参数</a></li>
+  <li><a href="#final方法" id="markdown-toc-final方法">final方法</a></li>
+  <li><a href="#final与private关键字" id="markdown-toc-final与private关键字">final与private关键字</a></li>
+  <li><a href="#final类" id="markdown-toc-final类">final类</a></li>
+  <li><a href="#final关键字的好处" id="markdown-toc-final关键字的好处">final关键字的好处</a></li>
+  <li><a href="#不可变类" id="markdown-toc-不可变类">不可变类</a></li>
+</ul>
+
+<p>根据上下文环境，Java的关键字<code class="highlighter-rouge">final</code>的含义存在着细微的区别，但通常它指的是“这是无法改变的。” <br />
+<br />
+下面将讨论<code class="highlighter-rouge">final</code>的三种情况：<code class="highlighter-rouge">数据</code>，<code class="highlighter-rouge">方法</code>和<code class="highlighter-rouge">类</code>。</p>
+
+<h3 id="final数据">final数据</h3>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">final</code>修饰数据时，可以修饰<code class="highlighter-rouge">成员变量</code>也可以修饰<code class="highlighter-rouge">局部变量</code>（<code class="highlighter-rouge">static</code>只能修饰成员变量，不能修饰局部变量），修饰局部变量时，表示仅在该方法或代码块内部是不可变的。</p>
+  </li>
+  <li>数据块恒定不变有两种情况：
+    <blockquote>
+      <ul>
+        <li>一个永不改变的<code class="highlighter-rouge">编译时常量</code>。比如<code class="highlighter-rouge">public final int v = 2;</code>或者<code class="highlighter-rouge">public static final int V = 2</code>; <br />
+<br /></li>
+        <li>一个在运行时被初始化的值，而你不希望它被改变。比如<code class="highlighter-rouge">public final v = rand.nextInt(100);</code>或者<code class="highlighter-rouge">public static final V = rand.nextInt(100)</code>；它们整个生命周期中，始终保持与初始化时的随机值保持一致，而不会改变；但是上面两条语句的区别在于，对于每一次生成的新的对象，<code class="highlighter-rouge">v</code>的值可能都会被初始化为不同的值，但<code class="highlighter-rouge">V</code>的值只会被初始化一次。</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>用<code class="highlighter-rouge">final</code>修饰<code class="highlighter-rouge">基本数据类型</code>和<code class="highlighter-rouge">引用类型</code>数据时也有不同的含义：
+    <blockquote>
+      <ul>
+        <li>当修饰<code class="highlighter-rouge">基本数据类型时</code>，其值不能被修改，对于<code class="highlighter-rouge">编译时常量</code>只能使用基本数据类型。<br />
+<br /></li>
+        <li>当修饰<code class="highlighter-rouge">引用类型</code>时，它表示该引用指向的存储空间地址不变，即无法指向其他的对象，但是对象其自身是可以修改的。</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>Java允许生成<code class="highlighter-rouge">空白final</code>，所谓空白final是指被声明为final但又未给定初值的域，但是编译器都确保空白final在使用前必须被初始化。这样做有个好处是：一个类中的final域可以做到根据对象而有所不同，却又保持其恒定不变的特性。例如：
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">class</span> <span class="nc">Poppet</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+     <span class="n">Poppet</span><span class="o">(</span><span class="kt">int</span> <span class="n">ii</span><span class="o">)</span> <span class="o">{</span><span class="n">i</span> <span class="o">=</span> <span class="n">ii</span><span class="o">}</span>
+ <span class="o">}</span>  
+
+ <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BlankFinal</span> <span class="o">{</span>
+     <span class="kd">private</span> <span class="kd">final</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// Initialized final</span>
+     <span class="kd">private</span> <span class="kd">final</span> <span class="n">j</span><span class="o">;</span> <span class="c1">// Blank final</span>
+     <span class="kd">private</span> <span class="kd">final</span> <span class="n">Poppet</span> <span class="n">p</span><span class="o">;</span> <span class="c1">// Blank final</span>
+    
+     <span class="c1">// Blank finals MUST be initialized in the constructor;</span>
+     <span class="kd">public</span> <span class="nf">BlankFinal</span><span class="o">()</span> <span class="o">{</span>
+         <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+         <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Poppet</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+     <span class="o">}</span>
+    
+     <span class="kd">public</span> <span class="nf">BlankFinal</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+         <span class="n">j</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+         <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Poppet</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+     <span class="o">}</span>
+    
+     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+         <span class="k">new</span> <span class="nf">BlankFinal</span><span class="o">();</span>
+         <span class="k">new</span> <span class="nf">BlankFinal</span><span class="o">(</span><span class="mi">47</span><span class="o">);</span>
+     <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="final参数">final参数</h3>
+
+<p>Java允许在参数列表中以声明的方式将参数指明为final。这意味着无法在方法中更改参数，其参数是基本类型，则无法修改其值，如果是引用类型，则无法修改其指向，但能修改对象本身。这一特性主要用来向匿名内部类传递数据。</p>
+
+<p>解释一下，为什么局部内部类(包括匿名内部类)使用外部的参数时，需要将参数修饰为<code class="highlighter-rouge">final</code></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nf">AnnoInner</span><span class="o">(){</span><span class="n">addXYZ</span><span class="o">();}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Outer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">AnnoInner</span> <span class="nf">getAnnoInner</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">x</span><span class="o">){</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">AnnoInner</span><span class="o">(){</span>
+            <span class="kt">int</span> <span class="n">z</span><span class="o">=</span><span class="mi">100</span><span class="o">;</span>
+            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">addXYZ</span><span class="o">(){</span><span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="o">}</span>
+            <span class="c1">// public void changeY(){y+=1} //这个函数无法修改外部环境的自由变量Y</span>
+        <span class="o">}</span><span class="err">；</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>这是因为Java在实现匿名内部类的时候，把外部环境方法的x和y局部变量，拷贝了一份到匿名内部类里，如下代码所示：</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nf">AnnoInner</span><span class="o">(){</span><span class="n">addXYZ</span><span class="o">();}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Outer</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">AnnoInner</span> <span class="nf">getAnnoInner</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">x</span><span class="o">){</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">AnnoInner</span><span class="o">(){</span>
+            <span class="kt">int</span> <span class="n">copyX</span><span class="o">=</span><span class="n">x</span><span class="o">;</span>    <span class="c1">//编译器相当于拷贝了外部自由变量x的一个副本到匿名内部类里。</span>
+            <span class="kt">int</span> <span class="n">copyY</span><span class="o">=</span><span class="n">y</span><span class="o">;</span>    <span class="c1">//编译器相当于拷贝了外部自由变量y的一个副本到匿名内部类里。</span>
+            <span class="kt">int</span> <span class="n">z</span><span class="o">=</span><span class="mi">100</span><span class="o">;</span>
+            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">addXYZ</span><span class="o">(){</span><span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="o">;}</span>
+        <span class="o">};</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>那么这样就造成了内部类与外部环境使用的数据不同步的问题，如果在内部类里面修改数据，不会反应到外部环境中来，(如果是引用类型，修改引用指向的对象内容是没关系的，只是不能修改引用的指向)，在外部环境修改数据也不会反应到内部类中去，所以Java直接<code class="highlighter-rouge">禁止修改数据</code>，即必须将内部类使用的数据设置为final。其实其他语言，比如<code class="highlighter-rouge">scala</code>和<code class="highlighter-rouge">C#</code>都没有这个限制，它们将数据拷贝到内部类时，先将数据进行了一层封装，即封装成一个对象，再传入进去：</p>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">public</span> <span class="k">final</span> <span class="k">class</span> <span class="nc">TryUsingAnonymousClassInScala$$anonfun$1</span> <span class="k">extends</span> <span class="nc">AbstractFunction0</span><span class="o">.</span><span class="n">mcV</span><span class="o">.</span><span class="n">sp</span>
+        <span class="n">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="k">final</span> <span class="n">long</span> <span class="n">serialVersionUID</span> <span class="k">=</span> <span class="mi">0L</span><span class="o">;</span>
+    <span class="k">private</span> <span class="k">final</span> <span class="nc">IntRef</span> <span class="n">number$2</span><span class="o">;</span>
+
+    <span class="n">public</span> <span class="k">final</span> <span class="n">void</span> <span class="n">apply</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">apply$mcV$sp</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="n">public</span> <span class="n">void</span> <span class="n">apply$mcV$sp</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="n">number$2</span><span class="o">.</span><span class="n">elem</span> <span class="k">=</span> <span class="mi">456</span><span class="o">;</span>
+        <span class="nc">Predef</span><span class="o">..</span><span class="nc">MODULE</span><span class="n">$</span><span class="o">.</span><span class="n">println</span><span class="o">(</span><span class="nc">BoxesRunTime</span><span class="o">.</span><span class="n">boxToInteger</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="n">number$2</span><span class="o">.</span><span class="n">elem</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="n">public</span> <span class="nc">TryUsingAnonymousClassInScala$$anonfun$1</span><span class="o">(</span><span class="nc">TryUsingAnonymousClassInScala</span> <span class="nc">$outer</span><span class="o">,</span> <span class="nc">IntRef</span> <span class="n">number$2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="n">number$2</span> <span class="k">=</span> <span class="n">number$2</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>可以看到<code class="highlighter-rouge">number</code>也是通过构造方法的参数传入的，但是与Java的不同是这里的number不是直接传入的，是被<code class="highlighter-rouge">IntRef</code>包装了一层然后才传入的。对number的值修改也是通过包装类进行的：<code class="highlighter-rouge">this.number$2.elem = 456;</code>，外部如果修改number也是通过包装类进行修改。这就是利用final修饰引用的特性：不能修改包装类的指向，但是能修改包装类里面的内容，这样就达到了修改number的指向的问题，就算number是一个引用类型，也是可以改变的，因为内外维护的是同一个引用。在内部类里面改了引用里面的引用，外部的引用里面的引用也会改变。</p>
+
+<p><strong>但是，在<code class="highlighter-rouge">JDK8</code>之后，java引入了<code class="highlighter-rouge">effctive final</code>的概念，如果代码里面没有对外部数据进行修改，那么也可以不写final修饰，编译器会自动添加final关键字</strong></p>
+
+<h3 id="final方法">final方法</h3>
+
+<p>使用<strong>final</strong>方法的原因有两个：</p>
+<ul>
+  <li>把方法锁定，以防任何继承类修改它的含义。这是出于设计的考虑，想要确保在继承中使方法行为保持不变，并且不会被覆盖。</li>
+  <li>第二个原因是为了效率，早期的Java实现中，对于final方法的实现类似于内联函数，在调用处直接进行参数入栈，并展开调用代码，消除方法调用带来的开销。但是，如果一个方法很大，可能看不到任何性能提高。</li>
+</ul>
+
+<p>在最近的Java版本中，建议不再使用final来处理效率问题，这些都应该交给编译器和JVM去处理。只有明确禁止覆盖方法时，才将方法设置成final</p>
+
+<h3 id="final与private关键字">final与private关键字</h3>
+
+<p>类中所有的<code class="highlighter-rouge">private方法</code>都隐式地指定为是final的。由于无法取用private方法，也就无法覆盖它。可以对private方法添加final修饰词，但这并不能给该方法增加任何额外的意义。</p>
+
+<p>但是，如果你试图覆盖一个private方法，编译器也不会给出错误信息，这是因为private方法本身是不可见的，所以在导出类中同名的private方法仅仅是一个新的方法，与父类的方法没有任何关系。</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">WithFinals</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"WithFinals.f()"</span><span class="o">);}</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">g</span><span class="o">()</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"WithFinals.g()"</span><span class="o">);}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">OverridingPrivate</span> <span class="kd">extends</span> <span class="n">WithFinals</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"OverridingPrivate.f()"</span><span class="o">);}</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">g</span><span class="o">()</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"OverridingPrivate.g()"</span><span class="o">);}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">OverridingPrivate2</span> <span class="kd">extends</span> <span class="n">OverridingPrivate</span><span class="o">{</span>
+    
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">f</span><span class="o">()</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"OverridingPrivate2.f()"</span><span class="o">);}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">g</span><span class="o">()</span> <span class="o">{</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"OverridingPrivate2.g()"</span><span class="o">);}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">OverridingPrivate2</span> <span class="n">op2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OverridingPrivate2</span><span class="o">();</span>
+        <span class="n">op2</span><span class="o">.</span><span class="na">f</span><span class="o">();</span>
+        <span class="n">op2</span><span class="o">.</span><span class="na">g</span><span class="o">();</span>
+        
+        <span class="n">OverridingPrivate</span> <span class="n">op</span> <span class="o">=</span> <span class="n">op2</span><span class="o">;</span>
+        <span class="c1">// But you can't call the methods:</span>
+        <span class="c1">//! op.f();</span>
+        <span class="c1">//! op.g();</span>
+        
+        <span class="n">WithFinals</span> <span class="n">wf</span> <span class="o">=</span> <span class="n">op2</span><span class="o">;</span>
+        <span class="c1">//! wf.f();</span>
+        <span class="c1">//! wf.g();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="final类">final类</h3>
+
+<p>当将某个类的整体定义为final时，就表明了你不打算继承该类，而且也不允许别人这样做。换句话说，你不希望该类有子类。</p>
+
+<p>请注意，final类的域可以根据个人的意愿选择为是或者不是final。不论类是否被定义为final，相同的规则都适用于定义为final的域。然而，由于final类禁止继承，所以final类中所有的方法都隐式指定为final的，因为无法覆盖它们。</p>
+
+<h3 id="final关键字的好处">final关键字的好处</h3>
+
+<ol>
+  <li>final关键字某些条件下，能提高性能。JVM能缓存final变量。</li>
+  <li>final变量可以在多线程环境下共享，而不用担心同步的问题。</li>
+</ol>
+
+<h3 id="不可变类">不可变类</h3>
+
+<p>这里顺带提一下不可变类：</p>
+<ul>
+  <li>类添加final修饰，保证不可被继承。</li>
+  <li>保证所有成员变量必须私有，并且加上final修饰符</li>
+  <li>不提供改变成员变量的方法，包括setter</li>
+  <li>通过构造器初始化所有成员，进行深拷贝</li>
+</ul>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+
+  
+
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/',
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: [''],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/modules/sidebar-search.css">
+<script src="http://localhost:4000/assets/js/jekyll-search.min.js"></script>
+<script src="http://localhost:4000/assets/js/search.js"></script>
+
+<script type="text/javascript">
+SimpleJekyllSearch({
+    searchInput: document.getElementById('search_box'),
+    resultsContainer: document.getElementById('search_results'),
+    json: 'http://localhost:4000/assets/search_data.json',
+    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+})
+</script>
+
+    
+
+    
+<h3 class="post-directory-title mobile-hidden">Table of Contents</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2017
+                    <span title="elvisliu">elvisliu</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/ElvisLiu1994/ElvisLiu1994.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="http://localhost:4000/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="http://localhost:4000/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://localhost:4000/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://localhost:4000/assets/js/geopattern.js"></script>
+    <script src="http://localhost:4000/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112918714-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Java初始化与清理 &mdash; Elvis Liu</title>
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://localhost:4000/2017/12/30/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/">
+    <link rel="alternate" type="application/atom+xml" title="Elvis Liu" href="http://localhost:4000/feed.xml">
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    
+    <meta property="og:title" content="Java初始化与清理">
+      
+    <meta name="keywords" content="elvisliu">
+    <meta name="og:keywords" content="elvisliu">
+      
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://localhost:4000/2017/12/30/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/">
+    <meta property="og:site_name" content="Elvis Liu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-12-30">
+    
+    <script src="http://localhost:4000/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://localhost:4000/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="http://localhost:4000/" title="Elvis Liu"><span class="octicon octicon-mark-github"></span> Elvis Liu</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="http://localhost:4000/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="http://localhost:4000/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="http://localhost:4000/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="http://localhost:4000/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="http://localhost:4000/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Java初始化与清理">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Java初始化与清理</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/12/30
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="http://localhost:4000/categories/#Thinking in Java" title="Thinking in Java">Thinking in Java</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <ul id="markdown-toc">
+  <li><a href="#用构造器确保初始化" id="markdown-toc-用构造器确保初始化">用构造器确保初始化</a></li>
+  <li><a href="#终结处理和垃圾回收" id="markdown-toc-终结处理和垃圾回收">终结处理和垃圾回收</a></li>
+  <li><a href="#成员的初始化" id="markdown-toc-成员的初始化">成员的初始化</a></li>
+  <li><a href="#局部变量初始化" id="markdown-toc-局部变量初始化">局部变量初始化</a></li>
+  <li><a href="#举例对象的创建过程假设有个名为dog的类" id="markdown-toc-举例对象的创建过程假设有个名为dog的类">举例对象的创建过程(假设有个名为Dog的类)</a></li>
+  <li><a href="#初始化基类" id="markdown-toc-初始化基类">初始化基类</a></li>
+  <li><a href="#代码示例" id="markdown-toc-代码示例">代码示例</a></li>
+  <li><a href="#初始化需要避免的问题" id="markdown-toc-初始化需要避免的问题">初始化需要避免的问题</a></li>
+  <li><a href="#一道阿里面试题" id="markdown-toc-一道阿里面试题">一道阿里面试题</a></li>
+</ul>
+
+<h3 id="用构造器确保初始化">用构造器确保初始化</h3>
+<ol>
+  <li>当使用<code class="highlighter-rouge">new</code>关键字创建一个对象时，编译器会先给该对象分配相应的内存空间，然后调用<code class="highlighter-rouge">new</code>关键字后面的构造方法完成对象的初始化工作，这两个过程是紧密联系在一起的。<br />
+<br /></li>
+  <li>通过参数列表的不同（包括个数不同，类型不同，甚至顺序不同，不过不建议通过顺序不同来区分两个重载方法，这样会造成程序的混乱）可以重载多个构造器，不能以返回值的不同区分重载方法。一旦自己定义了一个构造器，无论是否有参，编译器都不会再创建默认构造器了。<br />
+<br /></li>
+  <li>在构造器中可以通过<code class="highlighter-rouge">this</code>关键字调用其他的构造器，<strong>但是，只能用<code class="highlighter-rouge">this</code>调用一个构造器，也必须将构造器调用置于最起始处，否则编译器会报错</strong>。除构造器之外，编译器禁止在其他任何地方调用构造器。</li>
+</ol>
+
+<h3 id="终结处理和垃圾回收">终结处理和垃圾回收</h3>
+<ol>
+  <li>垃圾回收器只会释放那些经由<code class="highlighter-rouge">new</code>分配的内存，也就是堆中的内存，如果是通过<code class="highlighter-rouge">native</code>方法比如调用<code class="highlighter-rouge">C语言函数</code>中，使用<code class="highlighter-rouge">malloc函数</code>分配的内存空间，尽管使用完成后，这些内存空间也是不被垃圾回收器控制的，这时候需要使用<code class="highlighter-rouge">finalize</code>函数中调用本地方法<code class="highlighter-rouge">free()</code>来释放那部分特殊空间。<br />
+<br /></li>
+  <li><strong>对象可能不被垃圾回收</strong>，只有在堆内存不够用的时候才有可能进行垃圾回收，所以finalize函数不一定会被调用。</li>
+  <li><strong>垃圾回收并不等于“析构”</strong></li>
+  <li><strong>垃圾回收只与内存有关</strong><br />
+<br /></li>
+  <li>不要期望用<code class="highlighter-rouge">finalize</code>来进行一些清理工作，它的用法非常晦涩，不建议使用。</li>
+</ol>
+
+<h3 id="成员的初始化">成员的初始化</h3>
+<ol>
+  <li>类的成员变量不显示进行初始化会有<code class="highlighter-rouge">默认初始值</code>，但是局部变量(如函数内部声明的变量)不进行初始化会报错。<br />
+<br /></li>
+  <li><strong>先对成员变量进行初始化之后，再执行构造器中的内容。</strong><br />
+<br /></li>
+  <li><code class="highlighter-rouge">static</code>关键字不能作用于局部变量，只能作用于域。<br />
+<br /></li>
+  <li>初始化的顺序是<code class="highlighter-rouge">先静态对象</code>，而<code class="highlighter-rouge">后非静态对象</code>。当首次生成这个类的对象，或者首次访问静态数据时，执行静态代码块一次。<br />
+<br /></li>
+  <li>静态代码块与非静态代码块，都会先于构造器执行。</li>
+</ol>
+
+<h3 id="局部变量初始化">局部变量初始化</h3>
+<ol>
+  <li>局部变量存在于<code class="highlighter-rouge">方法</code>和<code class="highlighter-rouge">代码块</code>中，且局部变量在栈中分配空间，而且局部变量一定要进行初始化，因为不会有默认值。<br />
+<br /></li>
+  <li>但是如果局部变量是一个<code class="highlighter-rouge">引用</code>，对其如果使用<code class="highlighter-rouge">new</code>关键字进行初始化的话，该<code class="highlighter-rouge">引用</code>在存储在栈中，但是<code class="highlighter-rouge">new</code>出来的空间是在堆中的，该引用指向的堆内存空间会被清零，即得到与成员变量一样的默认值。<br />
+<br /></li>
+  <li>比如，在下列方法中，对<code class="highlighter-rouge">dp</code>数组中的元素不需要进行清零，因为其使用了<code class="highlighter-rouge">new</code>进行初始化，那么堆空间中，数组的所有元素都会被清零。
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">numDistinct</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">,</span> <span class="n">String</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+     <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        
+     <span class="c1">// 边界情况</span>
+     <span class="k">if</span><span class="o">(</span><span class="n">m</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">||</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+     <span class="k">if</span><span class="o">(</span><span class="n">m</span> <span class="o">==</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">t</span><span class="o">))</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+        
+     <span class="c1">//虽然dp是一个局部变量，但是由于使用了new关键字，所以是在堆上分配了内存空间，然后进行了初始化为默认值。</span>
+     <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span> 
+     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+         <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 所有的串都包含1个空串</span>
+        
+     <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+         <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">// 这里也可以用(j&lt;=i &amp;&amp; j&lt;=n)结果是一样的</span>
+             <span class="k">if</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">!=</span> <span class="n">t</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">))</span> <span class="o">{</span>
+                 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+             <span class="o">}</span><span class="k">else</span> <span class="o">{</span>
+                 <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+             <span class="o">}</span>
+         <span class="o">}</span>
+     <span class="o">}</span>
+        
+     <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+ <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="举例对象的创建过程假设有个名为dog的类">举例对象的创建过程(假设有个名为Dog的类)</h3>
+<ol>
+  <li><strong>即使没有显式地使用<code class="highlighter-rouge">static</code>关键字，构造器实际上也是静态方法。</strong>因此，当首次创建<code class="highlighter-rouge">Dog对象</code>时，或者Dog类的静态方法/静态域首次被访问时，Java解释器必须查找类路径，以定位<code class="highlighter-rouge">Dog.class</code>文件。<br />
+<br /></li>
+  <li>然后载入<code class="highlighter-rouge">Dog.class</code>文件，有关<code class="highlighter-rouge">静态初始化</code>的动作都会执行。因此，静态初始化只在Class对象首次加载的时候进行一次。<br />
+<br /></li>
+  <li>当用<code class="highlighter-rouge">new Dog()</code>创建对象的时候，首先将在堆上为<code class="highlighter-rouge">Dog对象</code>分配足够的存储空间。<br />
+<br /></li>
+  <li>这块空间将被<code class="highlighter-rouge">清零</code>，这就自动地将<code class="highlighter-rouge">Dog对象</code>中的所有<code class="highlighter-rouge">基本类型</code>数据都设置成了<code class="highlighter-rouge">默认值</code>，而<code class="highlighter-rouge">引用</code>则被设置成为<code class="highlighter-rouge">null</code>。<br />
+<br /></li>
+  <li>执行所有出现于字段定义处的初始化动作。（包括字段的初始化，以及<code class="highlighter-rouge">非静态代码块</code>的初始化【非静态代码块对于支持匿名内部类的初始化是必须的】）<br />
+<br /></li>
+  <li><code class="highlighter-rouge">执行构造器</code>。这可能会牵涉到很多动作，尤其是涉及继承的时候。</li>
+</ol>
+
+<h3 id="初始化基类">初始化基类</h3>
+<ol>
+  <li>当创建一个导出类的对象时，该对象包含了一个基类的子对象。这个子对象与用基类直接创建的对象是一样的。二者的区别在于，后者来自于外部，而<code class="highlighter-rouge">基类的子对象被包装在导出类对象的内部</code>。<br />
+<br /></li>
+  <li>由于会自动创建一个基类的对象，Java会自动在导出类的构造器中插入对基类构造器的调用。即使不为导出类创建构造器，编译器也会通过插入默认的构造器，该构造器将会调用基类的默认构造器。<br />
+<br /></li>
+  <li>如果基类没有无参构造器，比如仅显示定义了一个有参构造器，那么编译器将不会自动生成无参构造器了。这样就必须用关键字<strong><code class="highlighter-rouge">super</code></strong>显示地编写调用基类构造器的语句，并且必须放在第一行。如果不在导出类的构造器中调用基类构造器，编译器将产生<code class="highlighter-rouge">无法找到符合BaseClassName()形式的构造器</code>的错误。</li>
+</ol>
+
+<h3 id="代码示例">代码示例</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Insect</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">9</span><span class="o">;</span>
+    
+    <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">"Insect non-static code block"</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kd">protected</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">printInit</span><span class="o">(</span><span class="s">"Insetc.j initialized"</span><span class="o">);</span>
+    
+    <span class="n">Insect</span><span class="o">()</span> <span class="o">{</span>
+       <span class="n">print</span><span class="o">(</span><span class="s">"i = "</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">", j = "</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span>
+       <span class="n">j</span> <span class="o">=</span> <span class="mi">39</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">printInit</span><span class="o">(</span><span class="s">"static Insect.x1 initialized"</span><span class="o">);</span>
+    
+    <span class="kd">static</span> <span class="kt">int</span> <span class="nf">printInit</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+        <span class="k">return</span> <span class="mi">47</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Beetle</span> <span class="kd">extends</span> <span class="n">Insect</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">printInit</span><span class="o">(</span><span class="s">"Beetle.k initialized"</span><span class="o">);</span>
+    
+    <span class="kd">public</span> <span class="nf">Beetle</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">"k = "</span> <span class="o">+</span> <span class="n">k</span><span class="o">);</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">"j = "</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">"Beetle non-static code block"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">printInit</span><span class="o">(</span><span class="s">"static Beetle.x2 initialized"</span><span class="o">);</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">"Beetle constructor"</span><span class="o">);</span>
+        <span class="n">Beetle</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Beetle</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="cm">/*
+static Insect.x1 initialized
+static Beetle.x2 initialized
+Beetle constructor
+Insect non-static code block
+Insetc.j initialized
+i = 9, j = 47
+Beetle.k initialized
+Beetle non-static code block
+k = 47
+j = 39
+*/</span>
+</code></pre></div></div>
+<p>对于上面的例子，我们详细分析一下它的运行过程。</p>
+<ol>
+  <li>运行上面的代码时，所发生的第一件事情就是试图访问<code class="highlighter-rouge">Beetle.main()</code>（一个<code class="highlighter-rouge">static</code>方法），于是加载器开始启动并找出<code class="highlighter-rouge">Beetle</code>类的编译代码（在名为<code class="highlighter-rouge">Beetle.class</code>的文件之中）。</li>
+  <li>在加载的过程中，编译器注意到它有一个基类（这是由关键字<code class="highlighter-rouge">extends</code>得知的），于是它继续进行加载，不管你是否打算产生一个该基类的对象，这都要发生（可以尝试注释掉<code class="highlighter-rouge">Beetle b = new Beetle();</code>，来证明这一观点）。</li>
+  <li>如果基类还有其自身的基类，那么第二个基类就会被加载，如此类推。</li>
+  <li>接下来，根基类中的<code class="highlighter-rouge">static初始化</code>（也可以叫做类初始化，在此例中为Insect）即会被执行，然后是下一个导出类，以此类推。<code class="highlighter-rouge">这种方式很重要</code>，因为导出类的static初始化可能会依赖于基类成员能否被正确初始化。（这是往方法区加载）</li>
+  <li>至此为止，必要的类都已加载完毕，对象就可以被创建了（在堆中开辟空间）。首先，对象中所有的基本类型都会被设为默认值，对象引用被设为null–这是通过将对象内存设为二进制零值而一举生成的。(静态对象不在该对象空间中，但是基类以及导出类的非静态成员变量都在该内存空间中)</li>
+  <li>然后，基类的构造器会被调用。在本例中，它是被自动调用的，因为如果导出类的构造器中没有显示调用基类构造器的话，编译器会自动生成调用基类默认构造器的代码。当然这里也可以在Beetle的构造器中用<code class="highlighter-rouge">super</code>来显示地调用基类的构造器。</li>
+  <li>在基类构造器完成之后，导出类的实例变量按其声明次序被初始化。</li>
+  <li>最后，导出类的构造器其余部分被执行。</li>
+</ol>
+
+<p>有几点需要注意的地方：首先是如果不使用<code class="highlighter-rouge">new</code>关键字进行对象的创建，那么只会进行类的加载，所有的静态变量初始化语句和静态代码块都会被编译进一个<code class="highlighter-rouge">类初始化函数</code>中，但是不会进行对象的创建，也就是不会在堆中开辟空间，所有的对象成员变量初始化以及非静态块代码都不会被执行。但是如果使用<code class="highlighter-rouge">new</code>的话，编译器会将所有的成员变量初始化和非静态代码块编译进构造函数中。</p>
+
+<h3 id="初始化需要避免的问题">初始化需要避免的问题</h3>
+
+<ol>
+  <li>构造器中一定不要创建自身实例，否则将造成死循环，抛出StackOverFlow错误（这里可能是由于方法区空间比堆空间小，而静态变量多的情况下，方法区先溢出）；同理这个规则也适用于对象的成员变量，如果对象中有自身的引用，一定不能在定义处或者构造器中进行初始化。
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
+ <span class="n">A</span> <span class="n">a1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="o">();</span>
+
+ <span class="kd">public</span> <span class="nf">A</span><span class="o">()</span> <span class="o">{</span>
+     <span class="n">a1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="o">();</span>
+     <span class="n">A</span> <span class="n">a2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="o">();</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+    <p>以上三种情况都会造成栈溢出，这样会造成一个无穷递归的调用栈。</p>
+
+    <p>通常程序不这样写，但是也存在这样的情况，比如链表中的next引用或者树中的left、right子树引用都是自身的引用，它们怎么进行初始化呢？一般都不会在构   造器或者定义处进行初始化，而是在满足一定条件的时候，在外部对其进行初始化。</p>
+
+    <p>但是，可以给静态的自身对象赋值，如：</p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">Class</span> <span class="n">A</span> <span class="o">{</span> 
+     <span class="kd">private</span> <span class="n">String</span> <span class="n">b</span> <span class="o">=</span><span class="s">"Hello"</span><span class="o">;</span> 
+     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">A</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="o">();</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+    <p>因为a被修饰为static后，它会被放置在方法区中，在该类被加载后执行静态初始化时，该静态成员变量需要生成一个A对象，此时类已经加载，所以不会再加载静 态变量以及初始化，只会直接执行构造器，所以不会造成死循环。</p>
+  </li>
+  <li>
+    <p>如果父类是一个抽象类，那通过调用父类的构造器，也可以将它初始化，并且初始化其中的数据。</p>
+  </li>
+  <li>如果你要在构造器中调用一个方法时，最好将该方法申明为<code class="highlighter-rouge">private</code>的。对于这个规则是需要一些说明的，假使你的父类构造器中要调用一个非静态方法，而这个方法不是private的又被子类所重载，这样在实际创建子类的过程中递归调用到了父类的构造器时，父类构造器对这个方法的调用就会由于多态而实际上调用了子类的方法，当这个子类方法需要用到子类中实例变量的时候，就会由于变量没有初始化而出现异常（至于为什么子类中的实例变量没有初始化可以参考上边的实例初始化过程），这是Java不想看到的情况。而当父类构造器中调用的方法是一个private方法时，private方法默认有一个final修饰符，多态就不会出现，也就不会出现父类构造器调用子类方法的情况，这样可以保证父类始终调用自己的方法，即使这个方法中调用了父类中的实例变量也不会出现变量未初始化的情况（变量初始化总是在当前类构造器主体执行之前进行）。</li>
+</ol>
+
+<h3 id="一道阿里面试题">一道阿里面试题</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InitializeDemo</span> <span class="o">{</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">InitializeDemo</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitializeDemo</span><span class="o">(</span><span class="s">"t1"</span><span class="o">);</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">InitializeDemo</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitializeDemo</span><span class="o">(</span><span class="s">"t2"</span><span class="o">);</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">print</span><span class="o">(</span><span class="s">"i"</span><span class="o">);</span>  
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">99</span><span class="o">;</span>  
+    <span class="kd">static</span> <span class="o">{</span>  
+        <span class="n">print</span><span class="o">(</span><span class="s">"静态块"</span><span class="o">);</span>  
+    <span class="o">}</span>  
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">print</span><span class="o">(</span><span class="s">"j"</span><span class="o">);</span>  
+    <span class="o">{</span>  
+        <span class="n">print</span><span class="o">(</span><span class="s">"构造块"</span><span class="o">);</span>  
+    <span class="o">}</span>  
+    <span class="kd">public</span> <span class="nf">InitializeDemo</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">k</span><span class="o">++)</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">str</span> <span class="o">+</span> <span class="s">"   i="</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">"    n="</span> <span class="o">+</span> <span class="n">n</span><span class="o">);</span>  
+        <span class="o">++</span><span class="n">i</span><span class="o">;</span>  
+        <span class="o">++</span><span class="n">n</span><span class="o">;</span>  
+    <span class="o">}</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">print</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>  
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="n">k</span><span class="o">++)</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">str</span> <span class="o">+</span> <span class="s">"   i="</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">"    n="</span> <span class="o">+</span> <span class="n">n</span><span class="o">);</span>  
+        <span class="o">++</span><span class="n">n</span><span class="o">;</span>  
+        <span class="k">return</span> <span class="o">++</span><span class="n">i</span><span class="o">;</span>  
+    <span class="o">}</span>  
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>  
+        <span class="k">new</span> <span class="nf">InitializeDemo</span><span class="o">(</span><span class="s">"init"</span><span class="o">);</span>  
+    <span class="o">}</span>  
+<span class="o">}</span>  
+</code></pre></div></div>
+
+<p>输出结果：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1:j   i=0    n=0  
+2:构造块   i=1    n=1  
+3:t1   i=2    n=2  
+4:j   i=3    n=3  
+5:构造块   i=4    n=4  
+6:t2   i=5    n=5  
+7:i   i=6    n=6  
+8:静态块   i=7    n=99  
+9:j   i=8    n=100  
+10:构造块   i=9    n=101  
+11:init   i=10    n=102  
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="o">.</span><span class="err">运行</span><span class="n">main</span><span class="err">方法的时候，</span><span class="n">JVM</span><span class="err">会调用</span><span class="n">ClassLoader</span><span class="err">来加载</span><span class="n">InitializeDemo</span><span class="err">类，那么一起源于这次加载。</span>  
+<span class="mi">2</span><span class="o">.</span><span class="err">上面有四个静态属性，所以会按顺序逐一初始化这四个静态属性。</span>  
+<span class="mi">3</span><span class="o">.</span><span class="na">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="err">此时将</span><span class="n">k</span><span class="err">初始化为</span><span class="mi">1</span><span class="err">。</span>  
+<span class="mi">4</span><span class="o">.</span><span class="na">private</span> <span class="kd">static</span> <span class="n">InitializeDemo</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitializeDemo</span><span class="o">(</span><span class="s">"t1"</span><span class="o">);</span><span class="err">创建</span><span class="n">InitializeDemo</span><span class="err">对象，那么按照核心理念中的顺序，由于此时类已经被加载，而静态初始化只会执行一次，所以这里就不会再执行静态初始化的代码，而直接执行非静态初始化，先执行</span><span class="kd">private</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">print</span><span class="o">(</span><span class="s">"j"</span><span class="o">);</span><span class="err">，打印出</span><span class="n">j</span><span class="err">，然后执行构造块，最后执行构造方法。</span>  
+<span class="mi">5</span><span class="o">.</span><span class="na">private</span> <span class="kd">static</span> <span class="n">InitializeDemo</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitializeDemo</span><span class="o">(</span><span class="s">"t2"</span><span class="o">);</span><span class="err">同步骤</span><span class="mi">4</span><span class="err">。</span>  
+<span class="mi">6</span><span class="o">.</span><span class="na">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">print</span><span class="o">(</span><span class="s">"i"</span><span class="o">);</span><span class="err">打印</span><span class="n">i</span><span class="err">。</span>  
+<span class="mi">7</span><span class="o">.</span><span class="na">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">99</span><span class="o">;</span><span class="err">直到这一步，</span><span class="n">n</span><span class="err">才被赋值为</span><span class="mi">99</span><span class="err">，之前是从默认的</span><span class="mi">0</span><span class="err">开始</span><span class="o">++</span><span class="err">的。</span>  
+<span class="mi">8</span><span class="o">.</span><span class="err">静态属性初始化完毕，代码走到静态块，打印出静态块，此时</span><span class="n">n</span><span class="o">=</span><span class="mi">99</span><span class="err">。</span>  
+<span class="mi">9</span><span class="o">.</span><span class="err">静态属性和静态块执行完毕，然后执行</span><span class="n">main</span><span class="err">方法中的代码</span><span class="k">new</span> <span class="n">InitializeDemo</span><span class="o">(</span><span class="s">"init"</span><span class="o">);</span>  
+<span class="mi">10</span><span class="o">.</span><span class="na">main</span><span class="err">方法中创建对象，先初始化非静态属性，</span><span class="kd">private</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">print</span><span class="o">(</span><span class="s">"j"</span><span class="o">);</span><span class="err">打印</span><span class="n">j</span><span class="err">，然后执行构造块，最后执行构造方法。</span>
+</code></pre></div></div>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+
+  
+
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2017/12/30/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/',
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: [''],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/modules/sidebar-search.css">
+<script src="http://localhost:4000/assets/js/jekyll-search.min.js"></script>
+<script src="http://localhost:4000/assets/js/search.js"></script>
+
+<script type="text/javascript">
+SimpleJekyllSearch({
+    searchInput: document.getElementById('search_box'),
+    resultsContainer: document.getElementById('search_results'),
+    json: 'http://localhost:4000/assets/search_data.json',
+    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+})
+</script>
+
+    
+
+    
+<h3 class="post-directory-title mobile-hidden">Table of Contents</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2017
+                    <span title="elvisliu">elvisliu</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/ElvisLiu1994/ElvisLiu1994.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="http://localhost:4000/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="http://localhost:4000/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://localhost:4000/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://localhost:4000/assets/js/geopattern.js"></script>
+    <script src="http://localhost:4000/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112918714-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+</html>

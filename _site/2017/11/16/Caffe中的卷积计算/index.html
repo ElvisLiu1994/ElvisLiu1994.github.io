@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Caffe中的卷积计算 &mdash; Elvis Liu</title>
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://localhost:4000/2017/11/16/Caffe%E4%B8%AD%E7%9A%84%E5%8D%B7%E7%A7%AF%E8%AE%A1%E7%AE%97/">
+    <link rel="alternate" type="application/atom+xml" title="Elvis Liu" href="http://localhost:4000/feed.xml">
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    
+    <meta property="og:title" content="Caffe中的卷积计算">
+      
+    <meta name="keywords" content="elvisliu">
+    <meta name="og:keywords" content="elvisliu">
+      
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://localhost:4000/2017/11/16/Caffe%E4%B8%AD%E7%9A%84%E5%8D%B7%E7%A7%AF%E8%AE%A1%E7%AE%97/">
+    <meta property="og:site_name" content="Elvis Liu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2017-11-16">
+    
+    <script src="http://localhost:4000/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://localhost:4000/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="http://localhost:4000/" title="Elvis Liu"><span class="octicon octicon-mark-github"></span> Elvis Liu</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="http://localhost:4000/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="http://localhost:4000/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="http://localhost:4000/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="http://localhost:4000/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="http://localhost:4000/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="Caffe中的卷积计算">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">Caffe中的卷积计算</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2017/11/16
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="http://localhost:4000/categories/#Caffe" title="Caffe">Caffe</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <ul id="markdown-toc">
+  <li><a href="#caffe的卷积层" id="markdown-toc-caffe的卷积层">Caffe的卷积层</a>    <ul>
+      <li><a href="#1-最简单的实现-嵌套循环" id="markdown-toc-1-最简单的实现-嵌套循环">1. 最简单的实现: <em>嵌套循环</em></a></li>
+      <li><a href="#2-caffe里面的计算方式" id="markdown-toc-2-caffe里面的计算方式">2. Caffe里面的计算方式</a></li>
+      <li><a href="#3-im2col方法" id="markdown-toc-3-im2col方法">3. im2col方法</a></li>
+      <li><a href="#4-举个例子" id="markdown-toc-4-举个例子">4. 举个例子</a></li>
+    </ul>
+  </li>
+  <li><a href="#参考" id="markdown-toc-参考"><em>参考</em></a></li>
+</ul>
+
+<h2 id="caffe的卷积层">Caffe的卷积层</h2>
+
+<p>在第一次接触Caffe时，阅读了<code class="highlighter-rouge">lenet</code>的prototxt文件<code class="highlighter-rouge">caffe/example/mnist/lenet_train_test.prototxt</code>，该文件中描述了<code class="highlighter-rouge">lenet</code>网络各层的配置信息，其中对于卷积层的定义如下：</p>
+<pre><code class="language-prototxt">layer {    // 定义一个新的卷积层，输入blob为data，输出blob为conv1
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  param {
+    lr_mult: 1    // 权值学习速率倍乘因子，1倍表示保持与全局参数一致
+  }
+  param {
+    lr_mult: 2    // bias学习速率倍乘因子，是全局参数的2倍
+  }
+  convolution_param {    // 卷积计算参数
+    num_output: 20       // 输出feature map数目为20，即有20个卷积核
+    kernel_size: 5       // 卷积核尺寸，5 X 5
+    stride: 1            // 卷积输出跳跃间隔，1表示连续输出，无跳跃
+    weight_filler {      // 权值使用xavier填充器
+      type: "xavier"
+    }
+    bias_filler {        // bias使用常数填充器，默认为0
+      type: "constant"
+    }
+  }
+}
+
+</code></pre>
+
+<p>可以看出，Caffe中的<code class="highlighter-rouge">lenet</code>网络对于卷积层的定义中，只指定了核的大小以及核的个数，上面为别为<code class="highlighter-rouge">5*5</code>和<code class="highlighter-rouge">20</code>。对于多通道图像，输出的<code class="highlighter-rouge">feature map</code>的个数只与卷积核的个数有关，而与通道数无关，比如对于一个单通道的图像进行卷积时，使用<code class="highlighter-rouge">10</code>个卷积核，得到<code class="highlighter-rouge">10</code>个<code class="highlighter-rouge">feature map</code>，当输入为<code class="highlighter-rouge">RGB</code>三通道时，输出仍为<code class="highlighter-rouge">10</code>个<code class="highlighter-rouge">feature map</code>，而不是<code class="highlighter-rouge">30</code>个，输出的个数依然是卷积核的个数。</p>
+
+<h3 id="1-最简单的实现-嵌套循环">1. 最简单的实现: <em>嵌套循环</em></h3>
+
+<p>参数定义 ：</p>
+
+<ul>
+  <li>
+    <p>图片：宽度为width：<code class="highlighter-rouge">W</code>，高度为height：<code class="highlighter-rouge">H</code>，图片的通道数为<code class="highlighter-rouge">D</code>，一般目前都是<code class="highlighter-rouge">RGB</code>三通道的<code class="highlighter-rouge">D=3</code>，但是为了不失一般性用<code class="highlighter-rouge">D</code>表示。</p>
+  </li>
+  <li>
+    <p>卷积核：卷积核的大小为<code class="highlighter-rouge">K * K</code>，每个通道的卷积核其实是不一样的，因此卷积核的大小其实也就是<code class="highlighter-rouge">D * K * K</code>，设卷积核的个数为<code class="highlighter-rouge">M</code>。</p>
+  </li>
+</ul>
+
+<div class="language-matlab highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">w</span> <span class="n">in</span> <span class="mf">1.</span><span class="o">.</span><span class="n">W</span>
+  <span class="k">for</span> <span class="n">h</span> <span class="n">in</span> <span class="mf">1.</span><span class="o">.</span><span class="n">H</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="mf">1.</span><span class="o">.</span><span class="n">K</span>
+      <span class="k">for</span> <span class="n">y</span> <span class="n">in</span> <span class="mf">1.</span><span class="o">.</span><span class="n">K</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="n">in</span> <span class="mf">1.</span><span class="o">.</span><span class="n">M</span>
+          <span class="k">for</span> <span class="n">d</span> <span class="n">in</span> <span class="mf">1.</span><span class="o">.</span><span class="n">D</span>
+            <span class="n">output</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">+=</span> <span class="nb">input</span><span class="p">(</span><span class="n">w</span><span class="o">+</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="o">+</span><span class="n">y</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="nb">filter</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+          <span class="k">end</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>可以看到最内层的循环是针对通道数<code class="highlighter-rouge">D</code>的，说明对于<code class="highlighter-rouge">D</code>个通道而言，是在每个通道上分别执行二维卷积，然后将<code class="highlighter-rouge">D</code>个通道加起来，<code class="highlighter-rouge">output(w, h, m) += input(w+x, h+y, d) * filter(m, x, y, d)</code>中可以看到输出<code class="highlighter-rouge">output</code>已经没有了通道的信息，在有<code class="highlighter-rouge">padding</code>的情况下，能保持输出的特征图片大小和原来一样，总共为<code class="highlighter-rouge">M</code>个<code class="highlighter-rouge">W * H</code>的<code class="highlighter-rouge">feature map</code>。这也是可以理解的，对于一张彩色图像，有<code class="highlighter-rouge">RGB</code>三个通道，在计算卷积时，同一个位置的三个卷积核分别计算卷积后，它们是可以直接进行叠加的，因为在显示一张图时，每一个像素也是通过对<code class="highlighter-rouge">RGB</code>三个分量进行简单的叠加而生成的。</p>
+
+<h3 id="2-caffe里面的计算方式">2. Caffe里面的计算方式</h3>
+
+<p>先贴上JYQ大神的几张图：</p>
+
+<center>
+<img src="/images/posts/jyq1.jpg" width="80%" height="80%" />
+<img src="/images/posts/jyq2.jpg" width="80%" height="80%" />
+<img src="/images/posts/jyq3.jpg" width="80%" height="80%" />
+<img src="/images/posts/jyq4.jpg" width="80%" height="80%" />
+<img src="/images/posts/jyq5.jpg" width="80%" height="80%" />
+</center>
+
+<p>核心思想是将图像数据和卷积核都平铺为二维的矩阵，然后进行矩阵相乘的计算。。先将图像数据根据<code class="highlighter-rouge">filter</code>的大小以及通道的大小来平铺，<code class="highlighter-rouge">Feature Matrix</code>的行数为<code class="highlighter-rouge">H*W</code>，列数为<code class="highlighter-rouge">C*K*K</code>，这里的<code class="highlighter-rouge">C</code>为通道数，相当于之前提到的<code class="highlighter-rouge">D</code>；然后将<code class="highlighter-rouge">filter</code>进行平铺，行数为<code class="highlighter-rouge">Cout</code>，列数为<code class="highlighter-rouge">C*K*K</code>，这里<code class="highlighter-rouge">Cout</code>为卷积核的个数，相当于之前提到的<code class="highlighter-rouge">M</code>；最后用<code class="highlighter-rouge">Filter Matrix</code>乘以<code class="highlighter-rouge">Feature Matrix</code>的转置，得到输出矩阵<code class="highlighter-rouge">Cout * (H * W)</code>，即<code class="highlighter-rouge">Cout</code>个<code class="highlighter-rouge">H*W</code>的<code class="highlighter-rouge">feature map</code>。</p>
+
+<h3 id="3-im2col方法">3. im2col方法</h3>
+<p>在Caffe的具体实现中，ConvolutionLayer的主要作用就是进行卷积操作，其中比较主要的函数就是im2col和col2im，为了方便理解，下图展示了caffe中具体的优化方法，图中上半部分是一个传统的卷积，下半部分是矩阵相乘的版本。</p>
+<center>
+<img src="/images/posts/im2col.jpg" />
+</center>
+
+<p>图中可以看出来，图像大小为<code class="highlighter-rouge">3*3</code>，共有<code class="highlighter-rouge">3</code>个通道，卷积核的个数<code class="highlighter-rouge">M = 2</code>，但是由于通道数为<code class="highlighter-rouge">3</code>，所以实际上的核数量为<code class="highlighter-rouge">6</code>；从上图中可以看出来矩阵相乘的方式非常方便，并且矩阵计算还方便使用GPU加速。</p>
+
+<h3 id="4-举个例子">4. 举个例子</h3>
+<p><img src="/images/posts/im2coljuli.png" alt="" /></p>
+
+<h2 id="参考"><em>参考</em></h2>
+<p>[1] <a href="http://blog.csdn.net/u014381600/article/details/60883856">http://blog.csdn.net/u014381600/article/details/60883856</a><br />
+[2] <a href="http://blog.csdn.net/u014114990/article/details/51125776">http://blog.csdn.net/u014114990/article/details/51125776</a><br />
+[3] <a href="https://www.zhihu.com/question/28385679">https://www.zhihu.com/question/28385679</a></p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+
+  
+
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2017/11/16/Caffe%E4%B8%AD%E7%9A%84%E5%8D%B7%E7%A7%AF%E8%AE%A1%E7%AE%97/',
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: [''],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/modules/sidebar-search.css">
+<script src="http://localhost:4000/assets/js/jekyll-search.min.js"></script>
+<script src="http://localhost:4000/assets/js/search.js"></script>
+
+<script type="text/javascript">
+SimpleJekyllSearch({
+    searchInput: document.getElementById('search_box'),
+    resultsContainer: document.getElementById('search_results'),
+    json: 'http://localhost:4000/assets/search_data.json',
+    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+})
+</script>
+
+    
+
+    
+<h3 class="post-directory-title mobile-hidden">Table of Contents</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2017
+                    <span title="elvisliu">elvisliu</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/ElvisLiu1994/ElvisLiu1994.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="http://localhost:4000/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="http://localhost:4000/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://localhost:4000/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://localhost:4000/assets/js/geopattern.js"></script>
+    <script src="http://localhost:4000/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112918714-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+</html>

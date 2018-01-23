@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>owncloud安装配置 &mdash; Elvis Liu</title>
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://localhost:4000/2018/01/02/owncloud%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
+    <link rel="alternate" type="application/atom+xml" title="Elvis Liu" href="http://localhost:4000/feed.xml">
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    
+    <meta property="og:title" content="owncloud安装配置">
+      
+    <meta name="keywords" content="elvisliu">
+    <meta name="og:keywords" content="elvisliu">
+      
+    <meta name="description" content="">
+    <meta name="og:description" content="">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://localhost:4000/2018/01/02/owncloud%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
+    <meta property="og:site_name" content="Elvis Liu">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-01-02">
+    
+    <script src="http://localhost:4000/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://localhost:4000/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="http://localhost:4000/" title="Elvis Liu"><span class="octicon octicon-mark-github"></span> Elvis Liu</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="http://localhost:4000/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="http://localhost:4000/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="http://localhost:4000/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="http://localhost:4000/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="http://localhost:4000/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="owncloud安装配置">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">owncloud安装配置</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/01/02
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="http://localhost:4000/categories/#重要记录" title="重要记录">重要记录</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <ul id="markdown-toc">
+  <li><a href="#安装依赖" id="markdown-toc-安装依赖">安装依赖</a></li>
+  <li><a href="#下载owncloud" id="markdown-toc-下载owncloud">下载owncloud</a></li>
+  <li><a href="#配置owncloud" id="markdown-toc-配置owncloud">配置owncloud</a></li>
+</ul>
+
+<h3 id="安装依赖">安装依赖</h3>
+
+<p>根据服务器的情况选择安装以下依赖包(后面发现由于我们服务器上php是编译安装的，所以这种安装依赖方法并不合适)</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt install -y apache2 mariadb-server libapache2-mod-php7.0 \
+    php7.0-gd php7.0-json php7.0-mysql php7.0-curl \
+    php7.0-intl php7.0-mcrypt php-imagick \
+    php7.0-zip php7.0-xml php7.0-mbstring
+</code></pre></div></div>
+
+<h3 id="下载owncloud">下载owncloud</h3>
+
+<ol>
+  <li>
+    <p>从<a href="https://owncloud.org/download/">官网</a>下载最新版本<code class="highlighter-rouge">10.0.4</code></p>
+  </li>
+  <li>解压后，拷贝到<code class="highlighter-rouge">apache</code>的<code class="highlighter-rouge">Document Root</code>下面，在我们的服务器上是<code class="highlighter-rouge">/var/www/html</code>，修改所属组和所有者
+    <blockquote>
+
+      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mv owncloud /var/www/html
+<span class="nb">sudo </span>chown <span class="nt">-R</span> phdchorus:phdchorus owncloud
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>添加配置文件，由于我们是编译安装的apache，配置文件的路径为<code class="highlighter-rouge">/usr/local/apache2/conf/</code>，在<code class="highlighter-rouge">extra/</code>下面新建<code class="highlighter-rouge">owncloud.conf</code>文件，并输入以下内容：
+    <blockquote>
+
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Alias /owncloud "/var/www/html/owncloud/"
+
+&lt;Directory /var/www/html/owncloud/&gt;
+ Options +FollowSymlinks
+ AllowOverride All
+
+&lt;IfModule mod_dav.c&gt;
+ Dav off
+&lt;/IfModule&gt;
+
+SetEnv HOME /var/www/html/owncloud
+SetEnv HTTP_HOME /var/www/html/owncloud
+
+&lt;/Directory&gt;
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>打开Apache的<code class="highlighter-rouge">mod_rewrite</code>等模块
+    <blockquote>
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo a2enmod rewrite
+sudo a2enmod headers
+sudo a2enmod env
+sudo a2enmod dir
+sudo a2enmod mime
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>输入网址<code class="highlighter-rouge">phdchorus.ucas.ac.cn/owncloud</code>出现如下错误：<code class="highlighter-rouge">Can't write into config directory!</code>
+    <blockquote>
+      <center>
+<img src="/styles/images/owncloud1.png" width="100%" height="100%" />
+</center>
+    </blockquote>
+  </li>
+  <li>查找解决方法可能是因为<code class="highlighter-rouge">/var/www/html/owncloud/config</code>目录的权限不够，先将owncloud下面所有文件及目录的所属者和所属组修改为www-data，然后将owncloud下面的<code class="highlighter-rouge">config</code>、<code class="highlighter-rouge">apps</code>目录的权限设置为777
+    <blockquote>
+      <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /var/www/html
+<span class="nb">sudo </span>chown <span class="nt">-R</span> www-data:www-data owncloud
+<span class="nb">cd </span>owncloud
+<span class="nb">sudo </span>chmod <span class="nt">-R</span> 777 apps/
+<span class="nb">sudo </span>chmod <span class="nt">-R</span> 777 config/
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>上述错误解决，但是出现了php模块未安装的错误
+    <blockquote>
+      <center>
+<img src="/styles/images/owncloud2.png" width="100%" height="100%" />
+</center>
+    </blockquote>
+  </li>
+  <li>上述错误是由于我们是编译安装的php，所以也需要手动编译安装php的其他模块，下面将介绍如何安装这两个模块：
+    <blockquote>
+      <p>在我们的服务器上PHP是手动编译安装的，源码位于<code class="highlighter-rouge">/usr/local/src/php-7.1.10 </code>，安装路径为<code class="highlighter-rouge">/usr/local/php-7.1.10</code></p>
+
+      <p>转到php源码目录下的<code class="highlighter-rouge">ext</code>文件夹中，这里可以看到该php版本所支持的所有扩展，应该可以看到<code class="highlighter-rouge">gd</code>和<code class="highlighter-rouge">zlib</code>&gt; 文件夹。转到相应的目录下，运行<code class="highlighter-rouge">/usr/loca/php-7.1.10/bin/phpize</code></p>
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/src/php-7.1.10/ext/gd$ /usr/local/php-7.1.10/bin/phpize
+</code></pre></div>      </div>
+
+      <p>注意，前一段是路径，<code class="highlighter-rouge">/usr/local/php-7.1.10/bin/phpize</code>才是命令，运行后会得到以下信息</p>
+
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Configuring for:
+PHP Api Version:         20151012
+Zend Module Api No:      20151012
+Zend Extension Api No:   320151012
+</code></pre></div>      </div>
+
+      <p>会在该目录下生成configure等文件，然后执行</p>
+
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ./configure --with-php-config=/usr/local/php-7.1.10/bin/php-config
+sudo make
+sudo make install
+</code></pre></div>      </div>
+
+      <p>注意，这里<code class="highlighter-rouge">--with-php-config</code>并非apache配置文件所在路径，必须设为<code class="highlighter-rouge">bin/php-config</code>&gt; 。安装完之后会提示extensions所在路径，转到该路径下，可以看到<code class="highlighter-rouge">gd.so</code>，即为gd扩展。（<strong>同理编译安装其他PHP扩展</strong>）。</p>
+
+      <p>在<code class="highlighter-rouge">php.ini</code>中加入以下配置行</p>
+
+      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extension=gd.so
+extension=zlib.so
+</code></pre></div>      </div>
+      <p>上述两个模块会被安装在<code class="highlighter-rouge">/usr/loca/php-7.1.10/lib/php/extensions/no-debug-zts-20160303</code>目录下，将其拷贝到extensions目录下，因为在php.ini中设置的extensions_basedir为extensions目录。</p>
+    </blockquote>
+  </li>
+  <li>配置完这些后，只看到有默认的SQLite数据库可用，找不到mysql，这是因为php与mysql互连的模块没有安装，继续安装pdo, pdo_mysql, mysqli模块即可。</li>
+</ol>
+
+<h3 id="配置owncloud">配置owncloud</h3>
+
+<ol>
+  <li>
+    <p>设置管理员账号为<code class="highlighter-rouge">admin</code>，密码为<code class="highlighter-rouge">phdchorus.oc</code>。</p>
+  </li>
+  <li>设置数据目录路径为<code class="highlighter-rouge">/media/data/owncloud-new</code>，设置own及权限：
+    <blockquote>
+      <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>chown <span class="nt">-R</span> www-data:www-data owncloud-new 
+</code></pre></div>      </div>
+    </blockquote>
+  </li>
+  <li>但是出现了<code class="highlighter-rouge">Can't write into data directory</code>的错误，解决办法：对于owncloud-new目录的own设置为<code class="highlighter-rouge">phdchorus:phdchorus</code>, 同时将owncloud-new目录的权限设置为<code class="highlighter-rouge">0770</code>，问题解决。</li>
+</ol>
+
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+
+  
+
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2018/01/02/owncloud%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/',
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: [''],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/modules/sidebar-search.css">
+<script src="http://localhost:4000/assets/js/jekyll-search.min.js"></script>
+<script src="http://localhost:4000/assets/js/search.js"></script>
+
+<script type="text/javascript">
+SimpleJekyllSearch({
+    searchInput: document.getElementById('search_box'),
+    resultsContainer: document.getElementById('search_results'),
+    json: 'http://localhost:4000/assets/search_data.json',
+    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+})
+</script>
+
+    
+
+    
+<h3 class="post-directory-title mobile-hidden">Table of Contents</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2017
+                    <span title="elvisliu">elvisliu</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/ElvisLiu1994/ElvisLiu1994.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="http://localhost:4000/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="http://localhost:4000/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://localhost:4000/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://localhost:4000/assets/js/geopattern.js"></script>
+    <script src="http://localhost:4000/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112918714-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+</html>
