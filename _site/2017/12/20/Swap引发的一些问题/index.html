@@ -146,12 +146,12 @@ a = 1, b = 2
 
 <p>这是什么原因呢？<code class="highlighter-rouge">Java</code>对于引用类型的数据，在传参时使用的是引用传递，即将实参的引用传给形参，在函数内部，<code class="highlighter-rouge">i1</code>指向的对象与<code class="highlighter-rouge">a</code>指向同一块内存空间，<code class="highlighter-rouge">i2</code>与<code class="highlighter-rouge">b</code>指向同一块内存空间，它们的值是一样的(引用值)。如下图所示：</p>
 <center>
-<img src="/styles/images/swap1.png" width="50%" height="50%" />
+<img src="/images/posts/swap1.png" width="50%" height="50%" />
 </center>
 
 <p>在<code class="highlighter-rouge">swap</code>函数里面，i1与i2确实发生了交换，但是它们对a和b的指向没有任何影响：</p>
 <center>
-<img src="/styles/images/swap2.png" width="50%" height="50%" />
+<img src="/images/posts/swap2.png" width="50%" height="50%" />
 </center>
 
 <p>个人理解，Java里面的参数传递类似于浅拷贝，即将实参引用的值拷贝给了形参，即形参与实参指向了同一块内存空间，对于所有的引用类型来讲，都不能通过这种方式达到交换的目的，因为传完参之后，实参的引用值并不会发生变化，所以在函数内部，如果仅仅只是对引用值进行操作，始终影响不了实参的指向。而如果要达到交换的目的，只有通过直接操作内存中存储的值进行交换，即把i1指向的内存空间的内容替换成i2指向的内容，这样更改才能达到交换的效果。</p>
@@ -186,7 +186,7 @@ a = 2, b = 2
 <p>在main函数里面，我们对a和b的初始化时使用的是<code class="highlighter-rouge">Integer a = 1</code>，其中1是int基本类型，但是a是Integer引用类型，java会将1自动装箱为Integer类型，即最终调用的是<code class="highlighter-rouge">Integer a = Integer.valueOf(1)</code>而不是<code class="highlighter-rouge">Integer a = new Integer(1)</code>，这样就导致a指向的是Integer.cache中的常量空间中。如下图所示：</p>
 
 <center>
-<img src="/styles/images/swap3.png" width="50%" height="50%" />
+<img src="/images/posts/swap3.png" width="50%" height="50%" />
 </center>
 
 <p>可以使用以下代码进行难：</p>
@@ -223,7 +223,7 @@ a = 2, b = 2
 <p>对于i1和i2发生自动装箱是在传入之前，现在i1与i2都指向常量池中，我们在调用f.set(i1, i2.intValue())时，set函数的定义是<code class="highlighter-rouge">public void set(Object obj, Object value)</code>，它需要传入的是两个引用类型，我们传入的i1是Integer类型的，但是i2.intValue()返回的是int数据，于是这里会发自自动装箱操作，但是i2.intValue()返回的是int型的2，发生自动装操作后它也指向了常量池中的2，那么执行set后i1指向的常量池会被更新为2</p>
 
 <center>
-<img src="/styles/images/swap4.png" width="50%" height="50%" />
+<img src="/images/posts/swap4.png" width="50%" height="50%" />
 </center>
 
 <p>然后调用f.set(i2, tmp)，在Integer.valueOf()函数中，直接返回IntegerCache.cache中的值时使用的是IntegerCache.cache[i + (-IntegerCache.low)]，因为tmp的值是1，所以在对tmp进行装箱操作的时候，它指向的是与i1同样的位置，但是这个时候i1已经被修改成为2了，所以导致最后i2还是被修改为2，从而输出的两个数都是2。</p>

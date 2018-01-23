@@ -134,100 +134,90 @@
     <p>从<a href="https://owncloud.org/download/">官网</a>下载最新版本<code class="highlighter-rouge">10.0.4</code></p>
   </li>
   <li>解压后，拷贝到<code class="highlighter-rouge">apache</code>的<code class="highlighter-rouge">Document Root</code>下面，在我们的服务器上是<code class="highlighter-rouge">/var/www/html</code>，修改所属组和所有者
-    <blockquote>
-
-      <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mv owncloud /var/www/html
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mv owncloud /var/www/html
 <span class="nb">sudo </span>chown <span class="nt">-R</span> phdchorus:phdchorus owncloud
-</code></pre></div>      </div>
-    </blockquote>
+</code></pre></div>    </div>
   </li>
-  <li>添加配置文件，由于我们是编译安装的apache，配置文件的路径为<code class="highlighter-rouge">/usr/local/apache2/conf/</code>，在<code class="highlighter-rouge">extra/</code>下面新建<code class="highlighter-rouge">owncloud.conf</code>文件，并输入以下内容：
-    <blockquote>
+  <li>添加配置文件，由于我们是编译安装的apache，配置文件的路径为<code class="highlighter-rouge">/usr/local/apache2/conf/</code>，在<code class="highlighter-rouge">extra/</code>下面新建<code class="highlighter-rouge">owncloud.conf</code>文件，并输入以下内容：</li>
+</ol>
 
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Alias /owncloud "/var/www/html/owncloud/"
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Alias /owncloud "/var/www/html/owncloud/"
 
 &lt;Directory /var/www/html/owncloud/&gt;
- Options +FollowSymlinks
- AllowOverride All
+  Options +FollowSymlinks
+  AllowOverride All
 
-&lt;IfModule mod_dav.c&gt;
- Dav off
-&lt;/IfModule&gt;
+ &lt;IfModule mod_dav.c&gt;
+  Dav off
+ &lt;/IfModule&gt;
 
-SetEnv HOME /var/www/html/owncloud
-SetEnv HTTP_HOME /var/www/html/owncloud
+ SetEnv HOME /var/www/html/owncloud
+ SetEnv HTTP_HOME /var/www/html/owncloud
 
 &lt;/Directory&gt;
-</code></pre></div>      </div>
-    </blockquote>
-  </li>
+</code></pre></div></div>
+
+<ol>
   <li>打开Apache的<code class="highlighter-rouge">mod_rewrite</code>等模块
-    <blockquote>
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo a2enmod rewrite
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo a2enmod rewrite
 sudo a2enmod headers
 sudo a2enmod env
 sudo a2enmod dir
 sudo a2enmod mime
-</code></pre></div>      </div>
-    </blockquote>
+</code></pre></div>    </div>
   </li>
-  <li>输入网址<code class="highlighter-rouge">phdchorus.ucas.ac.cn/owncloud</code>出现如下错误：<code class="highlighter-rouge">Can't write into config directory!</code>
-    <blockquote>
-      <center>
-<img src="/styles/images/owncloud1.png" width="100%" height="100%" />
+  <li>输入网址<code class="highlighter-rouge">phdchorus.ucas.ac.cn/owncloud</code>出现如下错误：<code class="highlighter-rouge">Can't write into config directory!</code></li>
+</ol>
+<center>
+<img src="/images/posts/owncloud1.png" width="100%" height="100%" />
 </center>
-    </blockquote>
-  </li>
+
+<ol>
   <li>查找解决方法可能是因为<code class="highlighter-rouge">/var/www/html/owncloud/config</code>目录的权限不够，先将owncloud下面所有文件及目录的所属者和所属组修改为www-data，然后将owncloud下面的<code class="highlighter-rouge">config</code>、<code class="highlighter-rouge">apps</code>目录的权限设置为777
-    <blockquote>
-      <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /var/www/html
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /var/www/html
 <span class="nb">sudo </span>chown <span class="nt">-R</span> www-data:www-data owncloud
 <span class="nb">cd </span>owncloud
 <span class="nb">sudo </span>chmod <span class="nt">-R</span> 777 apps/
 <span class="nb">sudo </span>chmod <span class="nt">-R</span> 777 config/
-</code></pre></div>      </div>
-    </blockquote>
+</code></pre></div>    </div>
   </li>
-  <li>上述错误解决，但是出现了php模块未安装的错误
-    <blockquote>
-      <center>
-<img src="/styles/images/owncloud2.png" width="100%" height="100%" />
+  <li>上述错误解决，但是出现了php模块未安装的错误</li>
+</ol>
+<center>
+<img src="/images/posts/owncloud2.png" width="100%" height="100%" />
 </center>
-    </blockquote>
-  </li>
+
+<ol>
   <li>上述错误是由于我们是编译安装的php，所以也需要手动编译安装php的其他模块，下面将介绍如何安装这两个模块：
-    <blockquote>
-      <p>在我们的服务器上PHP是手动编译安装的，源码位于<code class="highlighter-rouge">/usr/local/src/php-7.1.10 </code>，安装路径为<code class="highlighter-rouge">/usr/local/php-7.1.10</code></p>
+在我们的服务器上PHP是手动编译安装的，源码位于<code class="highlighter-rouge">/usr/local/src/php-7.1.10 </code>，安装路径为<code class="highlighter-rouge">/usr/local/php-7.1.10</code></li>
+</ol>
 
-      <p>转到php源码目录下的<code class="highlighter-rouge">ext</code>文件夹中，这里可以看到该php版本所支持的所有扩展，应该可以看到<code class="highlighter-rouge">gd</code>和<code class="highlighter-rouge">zlib</code>&gt; 文件夹。转到相应的目录下，运行<code class="highlighter-rouge">/usr/loca/php-7.1.10/bin/phpize</code></p>
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/src/php-7.1.10/ext/gd$ /usr/local/php-7.1.10/bin/phpize
-</code></pre></div>      </div>
+<p>转到php源码目录下的<code class="highlighter-rouge">ext</code>文件夹中，这里可以看到该php版本所支持的所有扩展，应该可以看到<code class="highlighter-rouge">gd</code>和<code class="highlighter-rouge">zlib</code>&gt; 文件夹。转到相应的目录下，运行<code class="highlighter-rouge">/usr/loca/php-7.1.10/bin/phpize</code></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/src/php-7.1.10/ext/gd$ /usr/local/php-7.1.10/bin/phpize
+</code></pre></div></div>
 
-      <p>注意，前一段是路径，<code class="highlighter-rouge">/usr/local/php-7.1.10/bin/phpize</code>才是命令，运行后会得到以下信息</p>
-
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Configuring for:
+<p>注意，前一段是路径，<code class="highlighter-rouge">/usr/local/php-7.1.10/bin/phpize</code>才是命令，运行后会得到以下信息</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Configuring for:
 PHP Api Version:         20151012
 Zend Module Api No:      20151012
 Zend Extension Api No:   320151012
-</code></pre></div>      </div>
+</code></pre></div></div>
 
-      <p>会在该目录下生成configure等文件，然后执行</p>
-
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ./configure --with-php-config=/usr/local/php-7.1.10/bin/php-config
+<p>会在该目录下生成configure等文件，然后执行</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ./configure --with-php-config=/usr/local/php-7.1.10/bin/php-config
 sudo make
 sudo make install
-</code></pre></div>      </div>
+</code></pre></div></div>
 
-      <p>注意，这里<code class="highlighter-rouge">--with-php-config</code>并非apache配置文件所在路径，必须设为<code class="highlighter-rouge">bin/php-config</code>&gt; 。安装完之后会提示extensions所在路径，转到该路径下，可以看到<code class="highlighter-rouge">gd.so</code>，即为gd扩展。（<strong>同理编译安装其他PHP扩展</strong>）。</p>
+<p>注意，这里<code class="highlighter-rouge">--with-php-config</code>并非apache配置文件所在路径，必须设为<code class="highlighter-rouge">bin/php-config</code>&gt; 。安装完之后会提示extensions所在路径，转到该路径下，可以看到<code class="highlighter-rouge">gd.so</code>，即为gd扩展。（<strong>同理编译安装其他PHP扩展</strong>）。</p>
 
-      <p>在<code class="highlighter-rouge">php.ini</code>中加入以下配置行</p>
-
-      <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extension=gd.so
+<p>在<code class="highlighter-rouge">php.ini</code>中加入以下配置行</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extension=gd.so
 extension=zlib.so
-</code></pre></div>      </div>
-      <p>上述两个模块会被安装在<code class="highlighter-rouge">/usr/loca/php-7.1.10/lib/php/extensions/no-debug-zts-20160303</code>目录下，将其拷贝到extensions目录下，因为在php.ini中设置的extensions_basedir为extensions目录。</p>
-    </blockquote>
-  </li>
+</code></pre></div></div>
+<p>上述两个模块会被安装在<code class="highlighter-rouge">/usr/loca/php-7.1.10/lib/php/extensions/no-debug-zts-20160303</code>目录下，将其拷贝到extensions目录下，因为在php.ini中设置的extensions_basedir为extensions目录。</p>
+
+<ol>
   <li>配置完这些后，只看到有默认的SQLite数据库可用，找不到mysql，这是因为php与mysql互连的模块没有安装，继续安装pdo, pdo_mysql, mysqli模块即可。</li>
 </ol>
 
@@ -238,10 +228,8 @@ extension=zlib.so
     <p>设置管理员账号为<code class="highlighter-rouge">admin</code>，密码为<code class="highlighter-rouge">phdchorus.oc</code>。</p>
   </li>
   <li>设置数据目录路径为<code class="highlighter-rouge">/media/data/owncloud-new</code>，设置own及权限：
-    <blockquote>
-      <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>chown <span class="nt">-R</span> www-data:www-data owncloud-new 
-</code></pre></div>      </div>
-    </blockquote>
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>chown <span class="nt">-R</span> www-data:www-data owncloud-new 
+</code></pre></div>    </div>
   </li>
   <li>但是出现了<code class="highlighter-rouge">Can't write into data directory</code>的错误，解决办法：对于owncloud-new目录的own设置为<code class="highlighter-rouge">phdchorus:phdchorus</code>, 同时将owncloud-new目录的权限设置为<code class="highlighter-rouge">0770</code>，问题解决。</li>
 </ol>

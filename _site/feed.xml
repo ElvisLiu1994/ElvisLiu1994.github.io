@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-23T20:09:01+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">抽象类与接口</title><link href="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/" rel="alternate" type="text/html" title="抽象类与接口" /><published>2018-01-15T00:00:00+08:00</published><updated>2018-01-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3</id><content type="html" xml:base="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-23T20:52:19+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">抽象类与接口</title><link href="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/" rel="alternate" type="text/html" title="抽象类与接口" /><published>2018-01-15T00:00:00+08:00</published><updated>2018-01-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3</id><content type="html" xml:base="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#抽象类和抽象方法&quot; id=&quot;markdown-toc-抽象类和抽象方法&quot;&gt;抽象类和抽象方法&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#接口&quot; id=&quot;markdown-toc-接口&quot;&gt;接口&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -87,22 +87,20 @@
 &lt;h3 id=&quot;在方法和作用域内的内部类&quot;&gt;在方法和作用域内的内部类&lt;/h3&gt;
 
 &lt;p&gt;前面介绍的都是“平凡的”内部类，简单并且容易理解。然而，内部类的语法覆盖了大量其他的更加难以理解的技术。例如，可以在一个方法里面或者在任意的作用域内定义内部类。这么做有两个理由：&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;如前所示，你实现了某类型的接口，于是可以创建并返回对其的引用。&lt;/li&gt;
-    &lt;li&gt;你要解决一个复杂的问题，想创建一个类来辅助你的解决方案，但是又不希望这个类是公共可用的。
-在后面的例子中，先前的代码将被修改，以用来实现：
-      &lt;ol&gt;
-        &lt;li&gt;一个定义在方法中的类。&lt;/li&gt;
-        &lt;li&gt;一个定义在作用域内的类，此作用域在方法的内部。&lt;/li&gt;
-        &lt;li&gt;一个实现接口的匿名类。&lt;/li&gt;
-        &lt;li&gt;一个匿名类，它扩展了有非默认构造器的类。&lt;/li&gt;
-        &lt;li&gt;一个匿名类，它执行字段初始化。&lt;/li&gt;
-        &lt;li&gt;一个匿名类，它通过实例初始化实现构造（匿名类不可能有构造器）&lt;/li&gt;
-      &lt;/ol&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><summary type="html"></summary></entry><entry><title type="html">多态</title><link href="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/" rel="alternate" type="text/html" title="多态" /><published>2018-01-11T00:00:00+08:00</published><updated>2018-01-11T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81</id><content type="html" xml:base="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;ul&gt;
+  &lt;li&gt;如前所示，你实现了某类型的接口，于是可以创建并返回对其的引用。&lt;/li&gt;
+  &lt;li&gt;你要解决一个复杂的问题，想创建一个类来辅助你的解决方案，但是又不希望这个类是公共可用的。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在后面的例子中，先前的代码将被修改，以用来实现：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;一个定义在方法中的类。&lt;/li&gt;
+  &lt;li&gt;一个定义在作用域内的类，此作用域在方法的内部。&lt;/li&gt;
+  &lt;li&gt;一个实现接口的匿名类。&lt;/li&gt;
+  &lt;li&gt;一个匿名类，它扩展了有非默认构造器的类。&lt;/li&gt;
+  &lt;li&gt;一个匿名类，它执行字段初始化。&lt;/li&gt;
+  &lt;li&gt;一个匿名类，它通过实例初始化实现构造（匿名类不可能有构造器）&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><summary type="html"></summary></entry><entry><title type="html">多态</title><link href="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/" rel="alternate" type="text/html" title="多态" /><published>2018-01-11T00:00:00+08:00</published><updated>2018-01-11T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81</id><content type="html" xml:base="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#方法调用绑定&quot; id=&quot;markdown-toc-方法调用绑定&quot;&gt;方法调用绑定&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#缺陷无法覆盖私有方法&quot; id=&quot;markdown-toc-缺陷无法覆盖私有方法&quot;&gt;缺陷：无法覆盖私有方法&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#缺陷无法覆盖域与静态方法&quot; id=&quot;markdown-toc-缺陷无法覆盖域与静态方法&quot;&gt;缺陷：无法覆盖域与静态方法&lt;/a&gt;&lt;/li&gt;
@@ -189,7 +187,7 @@ Grain
 Wheat
 */&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;导出类在覆盖基类的方法时，可以返回基类方法返回类型的导出类型。&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><summary type="html"></summary></entry><entry><title type="html">final关键字</title><link href="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/" rel="alternate" type="text/html" title="&lt;strong&gt;final&lt;/strong&gt;关键字" /><published>2018-01-08T00:00:00+08:00</published><updated>2018-01-08T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97</id><content type="html" xml:base="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;p&gt;导出类在覆盖基类的方法时，可以返回基类方法返回类型的导出类型。&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><summary type="html"></summary></entry><entry><title type="html">final关键字</title><link href="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/" rel="alternate" type="text/html" title="final关键字" /><published>2018-01-08T00:00:00+08:00</published><updated>2018-01-08T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97</id><content type="html" xml:base="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#final数据&quot; id=&quot;markdown-toc-final数据&quot;&gt;final数据&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#final参数&quot; id=&quot;markdown-toc-final参数&quot;&gt;final参数&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#final方法&quot; id=&quot;markdown-toc-final方法&quot;&gt;final方法&lt;/a&gt;&lt;/li&gt;
@@ -418,7 +416,7 @@ Wheat
   &lt;li&gt;输入&lt;code class=&quot;highlighter-rouge&quot;&gt;java -version&lt;/code&gt;显示如下：
     &lt;blockquote&gt;
       &lt;center&gt;
-&lt;img src=&quot;/styles/images/aliyun1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+&lt;img src=&quot;/images/posts/aliyun1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
 &lt;/center&gt;
     &lt;/blockquote&gt;
   &lt;/li&gt;
@@ -485,100 +483,90 @@ pip3 install &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
     &lt;p&gt;从&lt;a href=&quot;https://owncloud.org/download/&quot;&gt;官网&lt;/a&gt;下载最新版本&lt;code class=&quot;highlighter-rouge&quot;&gt;10.0.4&lt;/code&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;解压后，拷贝到&lt;code class=&quot;highlighter-rouge&quot;&gt;apache&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;Document Root&lt;/code&gt;下面，在我们的服务器上是&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html&lt;/code&gt;，修改所属组和所有者
-    &lt;blockquote&gt;
-
-      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mv owncloud /var/www/html
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mv owncloud /var/www/html
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chown &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; phdchorus:phdchorus owncloud
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-    &lt;/blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;添加配置文件，由于我们是编译安装的apache，配置文件的路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/apache2/conf/&lt;/code&gt;，在&lt;code class=&quot;highlighter-rouge&quot;&gt;extra/&lt;/code&gt;下面新建&lt;code class=&quot;highlighter-rouge&quot;&gt;owncloud.conf&lt;/code&gt;文件，并输入以下内容：
-    &lt;blockquote&gt;
+  &lt;li&gt;添加配置文件，由于我们是编译安装的apache，配置文件的路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/apache2/conf/&lt;/code&gt;，在&lt;code class=&quot;highlighter-rouge&quot;&gt;extra/&lt;/code&gt;下面新建&lt;code class=&quot;highlighter-rouge&quot;&gt;owncloud.conf&lt;/code&gt;文件，并输入以下内容：&lt;/li&gt;
+&lt;/ol&gt;
 
-      &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Alias /owncloud &quot;/var/www/html/owncloud/&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Alias /owncloud &quot;/var/www/html/owncloud/&quot;
 
 &amp;lt;Directory /var/www/html/owncloud/&amp;gt;
- Options +FollowSymlinks
- AllowOverride All
+  Options +FollowSymlinks
+  AllowOverride All
 
-&amp;lt;IfModule mod_dav.c&amp;gt;
- Dav off
-&amp;lt;/IfModule&amp;gt;
+ &amp;lt;IfModule mod_dav.c&amp;gt;
+  Dav off
+ &amp;lt;/IfModule&amp;gt;
 
-SetEnv HOME /var/www/html/owncloud
-SetEnv HTTP_HOME /var/www/html/owncloud
+ SetEnv HOME /var/www/html/owncloud
+ SetEnv HTTP_HOME /var/www/html/owncloud
 
 &amp;lt;/Directory&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
   &lt;li&gt;打开Apache的&lt;code class=&quot;highlighter-rouge&quot;&gt;mod_rewrite&lt;/code&gt;等模块
-    &lt;blockquote&gt;
-      &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo a2enmod rewrite
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo a2enmod rewrite
 sudo a2enmod headers
 sudo a2enmod env
 sudo a2enmod dir
 sudo a2enmod mime
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-    &lt;/blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;输入网址&lt;code class=&quot;highlighter-rouge&quot;&gt;phdchorus.ucas.ac.cn/owncloud&lt;/code&gt;出现如下错误：&lt;code class=&quot;highlighter-rouge&quot;&gt;Can't write into config directory!&lt;/code&gt;
-    &lt;blockquote&gt;
-      &lt;center&gt;
-&lt;img src=&quot;/styles/images/owncloud1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+  &lt;li&gt;输入网址&lt;code class=&quot;highlighter-rouge&quot;&gt;phdchorus.ucas.ac.cn/owncloud&lt;/code&gt;出现如下错误：&lt;code class=&quot;highlighter-rouge&quot;&gt;Can't write into config directory!&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;center&gt;
+&lt;img src=&quot;/images/posts/owncloud1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
 &lt;/center&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
+
+&lt;ol&gt;
   &lt;li&gt;查找解决方法可能是因为&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/owncloud/config&lt;/code&gt;目录的权限不够，先将owncloud下面所有文件及目录的所属者和所属组修改为www-data，然后将owncloud下面的&lt;code class=&quot;highlighter-rouge&quot;&gt;config&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;apps&lt;/code&gt;目录的权限设置为777
-    &lt;blockquote&gt;
-      &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www/html
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www/html
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chown &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; www-data:www-data owncloud
 &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;owncloud
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chmod &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; 777 apps/
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chmod &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; 777 config/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-    &lt;/blockquote&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;上述错误解决，但是出现了php模块未安装的错误
-    &lt;blockquote&gt;
-      &lt;center&gt;
-&lt;img src=&quot;/styles/images/owncloud2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+  &lt;li&gt;上述错误解决，但是出现了php模块未安装的错误&lt;/li&gt;
+&lt;/ol&gt;
+&lt;center&gt;
+&lt;img src=&quot;/images/posts/owncloud2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
 &lt;/center&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
+
+&lt;ol&gt;
   &lt;li&gt;上述错误是由于我们是编译安装的php，所以也需要手动编译安装php的其他模块，下面将介绍如何安装这两个模块：
-    &lt;blockquote&gt;
-      &lt;p&gt;在我们的服务器上PHP是手动编译安装的，源码位于&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/src/php-7.1.10 &lt;/code&gt;，安装路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/php-7.1.10&lt;/code&gt;&lt;/p&gt;
+在我们的服务器上PHP是手动编译安装的，源码位于&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/src/php-7.1.10 &lt;/code&gt;，安装路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/php-7.1.10&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
-      &lt;p&gt;转到php源码目录下的&lt;code class=&quot;highlighter-rouge&quot;&gt;ext&lt;/code&gt;文件夹中，这里可以看到该php版本所支持的所有扩展，应该可以看到&lt;code class=&quot;highlighter-rouge&quot;&gt;gd&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;zlib&lt;/code&gt;&amp;gt; 文件夹。转到相应的目录下，运行&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/loca/php-7.1.10/bin/phpize&lt;/code&gt;&lt;/p&gt;
-      &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/src/php-7.1.10/ext/gd$ /usr/local/php-7.1.10/bin/phpize
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+&lt;p&gt;转到php源码目录下的&lt;code class=&quot;highlighter-rouge&quot;&gt;ext&lt;/code&gt;文件夹中，这里可以看到该php版本所支持的所有扩展，应该可以看到&lt;code class=&quot;highlighter-rouge&quot;&gt;gd&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;zlib&lt;/code&gt;&amp;gt; 文件夹。转到相应的目录下，运行&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/loca/php-7.1.10/bin/phpize&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/src/php-7.1.10/ext/gd$ /usr/local/php-7.1.10/bin/phpize
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-      &lt;p&gt;注意，前一段是路径，&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/php-7.1.10/bin/phpize&lt;/code&gt;才是命令，运行后会得到以下信息&lt;/p&gt;
-
-      &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuring for:
+&lt;p&gt;注意，前一段是路径，&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/php-7.1.10/bin/phpize&lt;/code&gt;才是命令，运行后会得到以下信息&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuring for:
 PHP Api Version:         20151012
 Zend Module Api No:      20151012
 Zend Extension Api No:   320151012
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-      &lt;p&gt;会在该目录下生成configure等文件，然后执行&lt;/p&gt;
-
-      &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo ./configure --with-php-config=/usr/local/php-7.1.10/bin/php-config
+&lt;p&gt;会在该目录下生成configure等文件，然后执行&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo ./configure --with-php-config=/usr/local/php-7.1.10/bin/php-config
 sudo make
 sudo make install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-      &lt;p&gt;注意，这里&lt;code class=&quot;highlighter-rouge&quot;&gt;--with-php-config&lt;/code&gt;并非apache配置文件所在路径，必须设为&lt;code class=&quot;highlighter-rouge&quot;&gt;bin/php-config&lt;/code&gt;&amp;gt; 。安装完之后会提示extensions所在路径，转到该路径下，可以看到&lt;code class=&quot;highlighter-rouge&quot;&gt;gd.so&lt;/code&gt;，即为gd扩展。（&lt;strong&gt;同理编译安装其他PHP扩展&lt;/strong&gt;）。&lt;/p&gt;
+&lt;p&gt;注意，这里&lt;code class=&quot;highlighter-rouge&quot;&gt;--with-php-config&lt;/code&gt;并非apache配置文件所在路径，必须设为&lt;code class=&quot;highlighter-rouge&quot;&gt;bin/php-config&lt;/code&gt;&amp;gt; 。安装完之后会提示extensions所在路径，转到该路径下，可以看到&lt;code class=&quot;highlighter-rouge&quot;&gt;gd.so&lt;/code&gt;，即为gd扩展。（&lt;strong&gt;同理编译安装其他PHP扩展&lt;/strong&gt;）。&lt;/p&gt;
 
-      &lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;php.ini&lt;/code&gt;中加入以下配置行&lt;/p&gt;
-
-      &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;extension=gd.so
+&lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;php.ini&lt;/code&gt;中加入以下配置行&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;extension=gd.so
 extension=zlib.so
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-      &lt;p&gt;上述两个模块会被安装在&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/loca/php-7.1.10/lib/php/extensions/no-debug-zts-20160303&lt;/code&gt;目录下，将其拷贝到extensions目录下，因为在php.ini中设置的extensions_basedir为extensions目录。&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;上述两个模块会被安装在&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/loca/php-7.1.10/lib/php/extensions/no-debug-zts-20160303&lt;/code&gt;目录下，将其拷贝到extensions目录下，因为在php.ini中设置的extensions_basedir为extensions目录。&lt;/p&gt;
+
+&lt;ol&gt;
   &lt;li&gt;配置完这些后，只看到有默认的SQLite数据库可用，找不到mysql，这是因为php与mysql互连的模块没有安装，继续安装pdo, pdo_mysql, mysqli模块即可。&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -589,10 +577,8 @@ extension=zlib.so
     &lt;p&gt;设置管理员账号为&lt;code class=&quot;highlighter-rouge&quot;&gt;admin&lt;/code&gt;，密码为&lt;code class=&quot;highlighter-rouge&quot;&gt;phdchorus.oc&lt;/code&gt;。&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;设置数据目录路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/media/data/owncloud-new&lt;/code&gt;，设置own及权限：
-    &lt;blockquote&gt;
-      &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chown &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; www-data:www-data owncloud-new 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-    &lt;/blockquote&gt;
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chown &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; www-data:www-data owncloud-new 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;但是出现了&lt;code class=&quot;highlighter-rouge&quot;&gt;Can't write into data directory&lt;/code&gt;的错误，解决办法：对于owncloud-new目录的own设置为&lt;code class=&quot;highlighter-rouge&quot;&gt;phdchorus:phdchorus&lt;/code&gt;, 同时将owncloud-new目录的权限设置为&lt;code class=&quot;highlighter-rouge&quot;&gt;0770&lt;/code&gt;，问题解决。&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="重要记录" /><category term="linux phdchorus" /><summary type="html"></summary></entry><entry><title type="html">Java初始化与清理</title><link href="http://localhost:4000/2017/12/30/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/" rel="alternate" type="text/html" title="Java初始化与清理" /><published>2017-12-30T00:00:00+08:00</published><updated>2017-12-30T00:00:00+08:00</updated><id>http://localhost:4000/2017/12/30/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86</id><content type="html" xml:base="http://localhost:4000/2017/12/30/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/">&lt;ul id=&quot;markdown-toc&quot;&gt;
@@ -609,95 +595,118 @@ extension=zlib.so
 
 &lt;h3 id=&quot;用构造器确保初始化&quot;&gt;用构造器确保初始化&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;当使用&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;关键字创建一个对象时，编译器会先给该对象分配相应的内存空间，然后调用&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;关键字后面的构造方法完成对象的初始化工作，这两个过程是紧密联系在一起的。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;通过参数列表的不同（包括个数不同，类型不同，甚至顺序不同，不过不建议通过顺序不同来区分两个重载方法，这样会造成程序的混乱）可以重载多个构造器，不能以返回值的不同区分重载方法。一旦自己定义了一个构造器，无论是否有参，编译器都不会再创建默认构造器了。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;在构造器中可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;关键字调用其他的构造器，&lt;strong&gt;但是，只能用&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;调用一个构造器，也必须将构造器调用置于最起始处，否则编译器会报错&lt;/strong&gt;。除构造器之外，编译器禁止在其他任何地方调用构造器。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当使用&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;关键字创建一个对象时，编译器会先给该对象分配相应的内存空间，然后调用&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;关键字后面的构造方法完成对象的初始化工作，这两个过程是紧密联系在一起的。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;通过参数列表的不同（包括个数不同，类型不同，甚至顺序不同，不过不建议通过顺序不同来区分两个重载方法，这样会造成程序的混乱）可以重载多个构造器，不能以返回值的不同区分重载方法。一旦自己定义了一个构造器，无论是否有参，编译器都不会再创建默认构造器了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在构造器中可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;关键字调用其他的构造器，&lt;strong&gt;但是，只能用&lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;调用一个构造器，也必须将构造器调用置于最起始处，否则编译器会报错&lt;/strong&gt;。除构造器之外，编译器禁止在其他任何地方调用构造器。&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;终结处理和垃圾回收&quot;&gt;终结处理和垃圾回收&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;垃圾回收器只会释放那些经由&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;分配的内存，也就是堆中的内存，如果是通过&lt;code class=&quot;highlighter-rouge&quot;&gt;native&lt;/code&gt;方法比如调用&lt;code class=&quot;highlighter-rouge&quot;&gt;C语言函数&lt;/code&gt;中，使用&lt;code class=&quot;highlighter-rouge&quot;&gt;malloc函数&lt;/code&gt;分配的内存空间，尽管使用完成后，这些内存空间也是不被垃圾回收器控制的，这时候需要使用&lt;code class=&quot;highlighter-rouge&quot;&gt;finalize&lt;/code&gt;函数中调用本地方法&lt;code class=&quot;highlighter-rouge&quot;&gt;free()&lt;/code&gt;来释放那部分特殊空间。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;垃圾回收器只会释放那些经由&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;分配的内存，也就是堆中的内存，如果是通过&lt;code class=&quot;highlighter-rouge&quot;&gt;native&lt;/code&gt;方法比如调用&lt;code class=&quot;highlighter-rouge&quot;&gt;C语言函数&lt;/code&gt;中，使用&lt;code class=&quot;highlighter-rouge&quot;&gt;malloc函数&lt;/code&gt;分配的内存空间，尽管使用完成后，这些内存空间也是不被垃圾回收器控制的，这时候需要使用&lt;code class=&quot;highlighter-rouge&quot;&gt;finalize&lt;/code&gt;函数中调用本地方法&lt;code class=&quot;highlighter-rouge&quot;&gt;free()&lt;/code&gt;来释放那部分特殊空间。&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;对象可能不被垃圾回收&lt;/strong&gt;，只有在堆内存不够用的时候才有可能进行垃圾回收，所以finalize函数不一定会被调用。&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;垃圾回收并不等于“析构”&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;垃圾回收只与内存有关&lt;/strong&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;垃圾回收只与内存有关&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;不要期望用&lt;code class=&quot;highlighter-rouge&quot;&gt;finalize&lt;/code&gt;来进行一些清理工作，它的用法非常晦涩，不建议使用。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;成员的初始化&quot;&gt;成员的初始化&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;类的成员变量不显示进行初始化会有&lt;code class=&quot;highlighter-rouge&quot;&gt;默认初始值&lt;/code&gt;，但是局部变量(如函数内部声明的变量)不进行初始化会报错。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;先对成员变量进行初始化之后，再执行构造器中的内容。&lt;/strong&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;关键字不能作用于局部变量，只能作用于域。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;初始化的顺序是&lt;code class=&quot;highlighter-rouge&quot;&gt;先静态对象&lt;/code&gt;，而&lt;code class=&quot;highlighter-rouge&quot;&gt;后非静态对象&lt;/code&gt;。当首次生成这个类的对象，或者首次访问静态数据时，执行静态代码块一次。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;静态代码块与非静态代码块，都会先于构造器执行。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;类的成员变量不显示进行初始化会有&lt;code class=&quot;highlighter-rouge&quot;&gt;默认初始值&lt;/code&gt;，但是局部变量(如函数内部声明的变量)不进行初始化会报错。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;先对成员变量进行初始化之后，再执行构造器中的内容。&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;关键字不能作用于局部变量，只能作用于域。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;静态代码块与非静态代码块，都会先于构造器执行。&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;局部变量初始化&quot;&gt;局部变量初始化&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;局部变量存在于&lt;code class=&quot;highlighter-rouge&quot;&gt;方法&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;代码块&lt;/code&gt;中，且局部变量在栈中分配空间，而且局部变量一定要进行初始化，因为不会有默认值。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;但是如果局部变量是一个&lt;code class=&quot;highlighter-rouge&quot;&gt;引用&lt;/code&gt;，对其如果使用&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;关键字进行初始化的话，该&lt;code class=&quot;highlighter-rouge&quot;&gt;引用&lt;/code&gt;在存储在栈中，但是&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;出来的空间是在堆中的，该引用指向的堆内存空间会被清零，即得到与成员变量一样的默认值。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;比如，在下列方法中，对&lt;code class=&quot;highlighter-rouge&quot;&gt;dp&lt;/code&gt;数组中的元素不需要进行清零，因为其使用了&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;进行初始化，那么堆空间中，数组的所有元素都会被清零。
-    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;numDistinct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        
-     &lt;span class=&quot;c1&quot;&gt;// 边界情况&lt;/span&gt;
-     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        
-     &lt;span class=&quot;c1&quot;&gt;//虽然dp是一个局部变量，但是由于使用了new关键字，所以是在堆上分配了内存空间，然后进行了初始化为默认值。&lt;/span&gt;
-     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; 
-     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 所有的串都包含1个空串&lt;/span&gt;
-        
-     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 这里也可以用(j&amp;lt;=i &amp;amp;&amp;amp; j&amp;lt;=n)结果是一样的&lt;/span&gt;
-             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-             &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-             &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;li&gt;
+    &lt;p&gt;局部变量存在于&lt;code class=&quot;highlighter-rouge&quot;&gt;方法&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;代码块&lt;/code&gt;中，且局部变量在栈中分配空间，而且局部变量一定要进行初始化，因为不会有默认值。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;但是如果局部变量是一个&lt;code class=&quot;highlighter-rouge&quot;&gt;引用&lt;/code&gt;，对其如果使用&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;关键字进行初始化的话，该&lt;code class=&quot;highlighter-rouge&quot;&gt;引用&lt;/code&gt;在存储在栈中，但是&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;出来的空间是在堆中的，该引用指向的堆内存空间会被清零，即得到与成员变量一样的默认值。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;比如，在下列方法中，对&lt;code class=&quot;highlighter-rouge&quot;&gt;dp&lt;/code&gt;数组中的元素不需要进行清零，因为其使用了&lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt;进行初始化，那么堆空间中，数组的所有元素都会被清零。&lt;/p&gt;
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;numDistinct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    
+ &lt;span class=&quot;c1&quot;&gt;// 边界情况&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+ &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+ &lt;span class=&quot;c1&quot;&gt;//虽然dp是一个局部变量，但是由于使用了new关键字，所以是在堆上分配了内存空间，然后进行了初始化为默认值。&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; 
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 所有的串都包含1个空串&lt;/span&gt;
+    
+ &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 这里也可以用(j&amp;lt;=i &amp;amp;&amp;amp; j&amp;lt;=n)结果是一样的&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+             &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+             &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
          &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        
-     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    
+ &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;举例对象的创建过程假设有个名为dog的类&quot;&gt;举例对象的创建过程(假设有个名为Dog的类)&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;即使没有显式地使用&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;关键字，构造器实际上也是静态方法。&lt;/strong&gt;因此，当首次创建&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog对象&lt;/code&gt;时，或者Dog类的静态方法/静态域首次被访问时，Java解释器必须查找类路径，以定位&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog.class&lt;/code&gt;文件。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;然后载入&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog.class&lt;/code&gt;文件，有关&lt;code class=&quot;highlighter-rouge&quot;&gt;静态初始化&lt;/code&gt;的动作都会执行。因此，静态初始化只在Class对象首次加载的时候进行一次。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;当用&lt;code class=&quot;highlighter-rouge&quot;&gt;new Dog()&lt;/code&gt;创建对象的时候，首先将在堆上为&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog对象&lt;/code&gt;分配足够的存储空间。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;这块空间将被&lt;code class=&quot;highlighter-rouge&quot;&gt;清零&lt;/code&gt;，这就自动地将&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog对象&lt;/code&gt;中的所有&lt;code class=&quot;highlighter-rouge&quot;&gt;基本类型&lt;/code&gt;数据都设置成了&lt;code class=&quot;highlighter-rouge&quot;&gt;默认值&lt;/code&gt;，而&lt;code class=&quot;highlighter-rouge&quot;&gt;引用&lt;/code&gt;则被设置成为&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;执行所有出现于字段定义处的初始化动作。（包括字段的初始化，以及&lt;code class=&quot;highlighter-rouge&quot;&gt;非静态代码块&lt;/code&gt;的初始化【非静态代码块对于支持匿名内部类的初始化是必须的】）&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;执行构造器&lt;/code&gt;。这可能会牵涉到很多动作，尤其是涉及继承的时候。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;即使没有显式地使用&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;关键字，构造器实际上也是静态方法。&lt;/strong&gt;因此，当首次创建&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog对象&lt;/code&gt;时，或者Dog类的静态方法/静态域首次被访问时，Java解释器必须查找类路径，以定位&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog.class&lt;/code&gt;文件。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;然后载入&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog.class&lt;/code&gt;文件，有关&lt;code class=&quot;highlighter-rouge&quot;&gt;静态初始化&lt;/code&gt;的动作都会执行。因此，静态初始化只在Class对象首次加载的时候进行一次。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当用&lt;code class=&quot;highlighter-rouge&quot;&gt;new Dog()&lt;/code&gt;创建对象的时候，首先将在堆上为&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog对象&lt;/code&gt;分配足够的存储空间。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;这块空间将被&lt;code class=&quot;highlighter-rouge&quot;&gt;清零&lt;/code&gt;，这就自动地将&lt;code class=&quot;highlighter-rouge&quot;&gt;Dog对象&lt;/code&gt;中的所有&lt;code class=&quot;highlighter-rouge&quot;&gt;基本类型&lt;/code&gt;数据都设置成了&lt;code class=&quot;highlighter-rouge&quot;&gt;默认值&lt;/code&gt;，而&lt;code class=&quot;highlighter-rouge&quot;&gt;引用&lt;/code&gt;则被设置成为&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;执行所有出现于字段定义处的初始化动作。（包括字段的初始化，以及&lt;code class=&quot;highlighter-rouge&quot;&gt;非静态代码块&lt;/code&gt;的初始化【非静态代码块对于支持匿名内部类的初始化是必须的】）&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;执行构造器&lt;/code&gt;。这可能会牵涉到很多动作，尤其是涉及继承的时候。&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;初始化基类&quot;&gt;初始化基类&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;当创建一个导出类的对象时，该对象包含了一个基类的子对象。这个子对象与用基类直接创建的对象是一样的。二者的区别在于，后者来自于外部，而&lt;code class=&quot;highlighter-rouge&quot;&gt;基类的子对象被包装在导出类对象的内部&lt;/code&gt;。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;由于会自动创建一个基类的对象，Java会自动在导出类的构造器中插入对基类构造器的调用。即使不为导出类创建构造器，编译器也会通过插入默认的构造器，该构造器将会调用基类的默认构造器。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;如果基类没有无参构造器，比如仅显示定义了一个有参构造器，那么编译器将不会自动生成无参构造器了。这样就必须用关键字&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;super&lt;/code&gt;&lt;/strong&gt;显示地编写调用基类构造器的语句，并且必须放在第一行。如果不在导出类的构造器中调用基类构造器，编译器将产生&lt;code class=&quot;highlighter-rouge&quot;&gt;无法找到符合BaseClassName()形式的构造器&lt;/code&gt;的错误。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当创建一个导出类的对象时，该对象包含了一个基类的子对象。这个子对象与用基类直接创建的对象是一样的。二者的区别在于，后者来自于外部，而&lt;code class=&quot;highlighter-rouge&quot;&gt;基类的子对象被包装在导出类对象的内部&lt;/code&gt;。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;由于会自动创建一个基类的对象，Java会自动在导出类的构造器中插入对基类构造器的调用。即使不为导出类创建构造器，编译器也会通过插入默认的构造器，该构造器将会调用基类的默认构造器。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果基类没有无参构造器，比如仅显示定义了一个有参构造器，那么编译器将不会自动生成无参构造器了。这样就必须用关键字&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;super&lt;/code&gt;&lt;/strong&gt;显示地编写调用基类构造器的语句，并且必须放在第一行。如果不在导出类的构造器中调用基类构造器，编译器将产生&lt;code class=&quot;highlighter-rouge&quot;&gt;无法找到符合BaseClassName()形式的构造器&lt;/code&gt;的错误。&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;代码示例&quot;&gt;代码示例&lt;/h3&gt;
@@ -760,7 +769,9 @@ j = 39
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;对于上面的例子，我们详细分析一下它的运行过程。&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;运行上面的代码时，所发生的第一件事情就是试图访问&lt;code class=&quot;highlighter-rouge&quot;&gt;Beetle.main()&lt;/code&gt;（一个&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;方法），于是加载器开始启动并找出&lt;code class=&quot;highlighter-rouge&quot;&gt;Beetle&lt;/code&gt;类的编译代码（在名为&lt;code class=&quot;highlighter-rouge&quot;&gt;Beetle.class&lt;/code&gt;的文件之中）。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;运行上面的代码时，所发生的第一件事情就是试图访问&lt;code class=&quot;highlighter-rouge&quot;&gt;Beetle.main()&lt;/code&gt;（一个&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;方法），于是加载器开始启动并找出&lt;code class=&quot;highlighter-rouge&quot;&gt;Beetle&lt;/code&gt;类的编译代码（在名为&lt;code class=&quot;highlighter-rouge&quot;&gt;Beetle.class&lt;/code&gt;的文件之中）。&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;在加载的过程中，编译器注意到它有一个基类（这是由关键字&lt;code class=&quot;highlighter-rouge&quot;&gt;extends&lt;/code&gt;得知的），于是它继续进行加载，不管你是否打算产生一个该基类的对象，这都要发生（可以尝试注释掉&lt;code class=&quot;highlighter-rouge&quot;&gt;Beetle b = new Beetle();&lt;/code&gt;，来证明这一观点）。&lt;/li&gt;
   &lt;li&gt;如果基类还有其自身的基类，那么第二个基类就会被加载，如此类推。&lt;/li&gt;
   &lt;li&gt;接下来，根基类中的&lt;code class=&quot;highlighter-rouge&quot;&gt;static初始化&lt;/code&gt;（也可以叫做类初始化，在此例中为Insect）即会被执行，然后是下一个导出类，以此类推。&lt;code class=&quot;highlighter-rouge&quot;&gt;这种方式很重要&lt;/code&gt;，因为导出类的static初始化可能会依赖于基类成员能否被正确初始化。（这是往方法区加载）&lt;/li&gt;
@@ -847,17 +858,18 @@ j = 39
 11:init   i=10    n=102  
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;运行&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;方法的时候，&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JVM&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;会调用&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ClassLoader&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;来加载&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InitializeDemo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;类，那么一起源于这次加载。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;上面有四个静态属性，所以会按顺序逐一初始化这四个静态属性。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;此时将&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;初始化为&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InitializeDemo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InitializeDemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;t1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;创建&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;InitializeDemo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;对象，那么按照核心理念中的顺序，由于此时类已经被加载，而静态初始化只会执行一次，所以这里就不会再执行静态初始化的代码，而直接执行非静态初始化，先执行&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;j&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，打印出&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，然后执行构造块，最后执行构造方法。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InitializeDemo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InitializeDemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;t2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;同步骤&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;i&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;打印&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;直到这一步，&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;才被赋值为&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，之前是从默认的&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;开始&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;的。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;静态属性初始化完毕，代码走到静态块，打印出静态块，此时&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;。&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;静态属性和静态块执行完毕，然后执行&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;方法中的代码&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;InitializeDemo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;  
-&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;方法中创建对象，先初始化非静态属性，&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;j&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;打印&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，然后执行构造块，最后执行构造方法。&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><category term="构造过程 笔记" /><summary type="html"></summary></entry><entry><title type="html">Java实现Swap引发的一些思考</title><link href="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="Java实现Swap引发的一些思考" /><published>2017-12-20T00:00:00+08:00</published><updated>2017-12-20T00:00:00+08:00</updated><id>http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98</id><content type="html" xml:base="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;ol&gt;
+  &lt;li&gt;运行&lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;方法的时候，&lt;code class=&quot;highlighter-rouge&quot;&gt;JVM&lt;/code&gt;会调用&lt;code class=&quot;highlighter-rouge&quot;&gt;ClassLoader&lt;/code&gt;来加载&lt;code class=&quot;highlighter-rouge&quot;&gt;InitializeDemo&lt;/code&gt;类，那么一起源于这次加载。&lt;/li&gt;
+  &lt;li&gt;上面有四个静态属性，所以会按顺序逐一初始化这&lt;code class=&quot;highlighter-rouge&quot;&gt;四个静态属性&lt;/code&gt;。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;private static int k = 1;&lt;/code&gt; 此时将k初始化为1。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;private static InitializeDemo t1 = new InitializeDemo(&quot;t1&quot;);&lt;/code&gt;创建&lt;code class=&quot;highlighter-rouge&quot;&gt;InitializeDemo对象&lt;/code&gt;，那么按照核心理念中的顺序，由于此时 类已经被加载，而静态初始化只会执行一次，所以这里就不会再执行静态初始化的代码，而直接执行非静态初始化，先执行&lt;code class=&quot;highlighter-rouge&quot;&gt;private int j = pr int(&quot;j&quot;);&lt;/code&gt;，打印出&lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;，然后执行构造块，最后执行构造方法。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;private static InitializeDemo t2 = new InitializeDemo(&quot;t2&quot;);&lt;/code&gt;同步骤4。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;private static int i = print(&quot;i&quot;);&lt;/code&gt;打印i。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;private static int n = 99;&lt;/code&gt;直到这一步，&lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;才被赋值为&lt;code class=&quot;highlighter-rouge&quot;&gt;99&lt;/code&gt;，之前是从默认的&lt;code class=&quot;highlighter-rouge&quot;&gt;0&lt;/code&gt;开始&lt;code class=&quot;highlighter-rouge&quot;&gt;++&lt;/code&gt;的。&lt;/li&gt;
+  &lt;li&gt;静态属性初始化完毕，代码走到静态块，打印出静态块，此时&lt;code class=&quot;highlighter-rouge&quot;&gt;n=99&lt;/code&gt;。&lt;/li&gt;
+  &lt;li&gt;静态属性和静态块执行完毕，然后执行main方法中的代码&lt;code class=&quot;highlighter-rouge&quot;&gt;new InitializeDemo(&quot;init&quot;);&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;方法中创建对象，先初始化非静态属性，&lt;code class=&quot;highlighter-rouge&quot;&gt;private int j = print(&quot;j&quot;);&lt;/code&gt;打印&lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;，然后执行构造块，最后执行构造方法。&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><category term="构造过程 笔记" /><summary type="html"></summary></entry><entry><title type="html">Java实现Swap引发的一些思考</title><link href="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="Java实现Swap引发的一些思考" /><published>2017-12-20T00:00:00+08:00</published><updated>2017-12-20T00:00:00+08:00</updated><id>http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98</id><content type="html" xml:base="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#补充&quot; id=&quot;markdown-toc-补充&quot;&gt;补充：&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#参考&quot; id=&quot;markdown-toc-参考&quot;&gt;&lt;em&gt;参考&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -891,12 +903,12 @@ a = 1, b = 2
 
 &lt;p&gt;这是什么原因呢？&lt;code class=&quot;highlighter-rouge&quot;&gt;Java&lt;/code&gt;对于引用类型的数据，在传参时使用的是引用传递，即将实参的引用传给形参，在函数内部，&lt;code class=&quot;highlighter-rouge&quot;&gt;i1&lt;/code&gt;指向的对象与&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;指向同一块内存空间，&lt;code class=&quot;highlighter-rouge&quot;&gt;i2&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;指向同一块内存空间，它们的值是一样的(引用值)。如下图所示：&lt;/p&gt;
 &lt;center&gt;
-&lt;img src=&quot;/styles/images/swap1.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;/images/posts/swap1.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/center&gt;
 
 &lt;p&gt;在&lt;code class=&quot;highlighter-rouge&quot;&gt;swap&lt;/code&gt;函数里面，i1与i2确实发生了交换，但是它们对a和b的指向没有任何影响：&lt;/p&gt;
 &lt;center&gt;
-&lt;img src=&quot;/styles/images/swap2.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;/images/posts/swap2.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/center&gt;
 
 &lt;p&gt;个人理解，Java里面的参数传递类似于浅拷贝，即将实参引用的值拷贝给了形参，即形参与实参指向了同一块内存空间，对于所有的引用类型来讲，都不能通过这种方式达到交换的目的，因为传完参之后，实参的引用值并不会发生变化，所以在函数内部，如果仅仅只是对引用值进行操作，始终影响不了实参的指向。而如果要达到交换的目的，只有通过直接操作内存中存储的值进行交换，即把i1指向的内存空间的内容替换成i2指向的内容，这样更改才能达到交换的效果。&lt;/p&gt;
@@ -931,7 +943,7 @@ a = 2, b = 2
 &lt;p&gt;在main函数里面，我们对a和b的初始化时使用的是&lt;code class=&quot;highlighter-rouge&quot;&gt;Integer a = 1&lt;/code&gt;，其中1是int基本类型，但是a是Integer引用类型，java会将1自动装箱为Integer类型，即最终调用的是&lt;code class=&quot;highlighter-rouge&quot;&gt;Integer a = Integer.valueOf(1)&lt;/code&gt;而不是&lt;code class=&quot;highlighter-rouge&quot;&gt;Integer a = new Integer(1)&lt;/code&gt;，这样就导致a指向的是Integer.cache中的常量空间中。如下图所示：&lt;/p&gt;
 
 &lt;center&gt;
-&lt;img src=&quot;/styles/images/swap3.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;/images/posts/swap3.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/center&gt;
 
 &lt;p&gt;可以使用以下代码进行难：&lt;/p&gt;
@@ -968,7 +980,7 @@ a = 2, b = 2
 &lt;p&gt;对于i1和i2发生自动装箱是在传入之前，现在i1与i2都指向常量池中，我们在调用f.set(i1, i2.intValue())时，set函数的定义是&lt;code class=&quot;highlighter-rouge&quot;&gt;public void set(Object obj, Object value)&lt;/code&gt;，它需要传入的是两个引用类型，我们传入的i1是Integer类型的，但是i2.intValue()返回的是int数据，于是这里会发自自动装箱操作，但是i2.intValue()返回的是int型的2，发生自动装操作后它也指向了常量池中的2，那么执行set后i1指向的常量池会被更新为2&lt;/p&gt;
 
 &lt;center&gt;
-&lt;img src=&quot;/styles/images/swap4.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;/images/posts/swap4.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/center&gt;
 
 &lt;p&gt;然后调用f.set(i2, tmp)，在Integer.valueOf()函数中，直接返回IntegerCache.cache中的值时使用的是IntegerCache.cache[i + (-IntegerCache.low)]，因为tmp的值是1，所以在对tmp进行装箱操作的时候，它指向的是与i1同样的位置，但是这个时候i1已经被修改成为2了，所以导致最后i2还是被修改为2，从而输出的两个数都是2。&lt;/p&gt;
