@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-23T20:52:19+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">抽象类与接口</title><link href="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/" rel="alternate" type="text/html" title="抽象类与接口" /><published>2018-01-15T00:00:00+08:00</published><updated>2018-01-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3</id><content type="html" xml:base="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-23T23:26:53+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">抽象类与接口</title><link href="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/" rel="alternate" type="text/html" title="抽象类与接口" /><published>2018-01-15T00:00:00+08:00</published><updated>2018-01-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3</id><content type="html" xml:base="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#抽象类和抽象方法&quot; id=&quot;markdown-toc-抽象类和抽象方法&quot;&gt;抽象类和抽象方法&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#接口&quot; id=&quot;markdown-toc-接口&quot;&gt;接口&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -487,26 +487,24 @@ pip3 install &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chown &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; phdchorus:phdchorus owncloud
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;添加配置文件，由于我们是编译安装的apache，配置文件的路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/apache2/conf/&lt;/code&gt;，在&lt;code class=&quot;highlighter-rouge&quot;&gt;extra/&lt;/code&gt;下面新建&lt;code class=&quot;highlighter-rouge&quot;&gt;owncloud.conf&lt;/code&gt;文件，并输入以下内容：&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;li&gt;添加配置文件，由于我们是编译安装的apache，配置文件的路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/apache2/conf/&lt;/code&gt;，在&lt;code class=&quot;highlighter-rouge&quot;&gt;extra/&lt;/code&gt;下面新建&lt;code class=&quot;highlighter-rouge&quot;&gt;owncloud.conf&lt;/code&gt;文件，并输入以下内容
+    &lt;blockquote&gt;
+      &lt;p&gt;Alias /owncloud “/var/www/html/owncloud/”&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Alias /owncloud &quot;/var/www/html/owncloud/&quot;
+      &lt;p&gt;&amp;lt;Directory /var/www/html/owncloud/&amp;gt;&lt;br /&gt;
+   Options +FollowSymlinks&lt;br /&gt;
+   AllowOverride All&lt;/p&gt;
 
-&amp;lt;Directory /var/www/html/owncloud/&amp;gt;
-  Options +FollowSymlinks
-  AllowOverride All
+      &lt;IfModule mod_dav.c=&quot;&quot;&gt;  
+    Dav off  
+   &lt;/IfModule&gt;
 
- &amp;lt;IfModule mod_dav.c&amp;gt;
-  Dav off
- &amp;lt;/IfModule&amp;gt;
+      &lt;p&gt;SetEnv HOME /var/www/html/owncloud&lt;br /&gt;
+   SetEnv HTTP_HOME /var/www/html/owncloud&lt;/p&gt;
 
- SetEnv HOME /var/www/html/owncloud
- SetEnv HTTP_HOME /var/www/html/owncloud
-
-&amp;lt;/Directory&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
+      &lt;p&gt;&amp;lt;/Directory&amp;gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
   &lt;li&gt;打开Apache的&lt;code class=&quot;highlighter-rouge&quot;&gt;mod_rewrite&lt;/code&gt;等模块
     &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo a2enmod rewrite
 sudo a2enmod headers
@@ -515,13 +513,13 @@ sudo a2enmod dir
 sudo a2enmod mime
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;输入网址&lt;code class=&quot;highlighter-rouge&quot;&gt;phdchorus.ucas.ac.cn/owncloud&lt;/code&gt;出现如下错误：&lt;code class=&quot;highlighter-rouge&quot;&gt;Can't write into config directory!&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;center&gt;
+  &lt;li&gt;输入网址&lt;code class=&quot;highlighter-rouge&quot;&gt;phdchorus.ucas.ac.cn/owncloud&lt;/code&gt;出现如下错误：&lt;code class=&quot;highlighter-rouge&quot;&gt;Can't write into config directory!&lt;/code&gt;
+    &lt;blockquote&gt;
+      &lt;center&gt;
 &lt;img src=&quot;/images/posts/owncloud1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
 &lt;/center&gt;
-
-&lt;ol&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
   &lt;li&gt;查找解决方法可能是因为&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/www/html/owncloud/config&lt;/code&gt;目录的权限不够，先将owncloud下面所有文件及目录的所属者和所属组修改为www-data，然后将owncloud下面的&lt;code class=&quot;highlighter-rouge&quot;&gt;config&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;apps&lt;/code&gt;目录的权限设置为777
     &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www/html
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chown &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; www-data:www-data owncloud
@@ -530,13 +528,13 @@ sudo a2enmod mime
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;chmod &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; 777 config/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;上述错误解决，但是出现了php模块未安装的错误&lt;/li&gt;
-&lt;/ol&gt;
-&lt;center&gt;
+  &lt;li&gt;上述错误解决，但是出现了php模块未安装的错误
+    &lt;blockquote&gt;
+      &lt;center&gt;
 &lt;img src=&quot;/images/posts/owncloud2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
 &lt;/center&gt;
-
-&lt;ol&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
   &lt;li&gt;上述错误是由于我们是编译安装的php，所以也需要手动编译安装php的其他模块，下面将介绍如何安装这两个模块：
 在我们的服务器上PHP是手动编译安装的，源码位于&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/src/php-7.1.10 &lt;/code&gt;，安装路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/php-7.1.10&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -566,9 +564,7 @@ extension=zlib.so
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;上述两个模块会被安装在&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/loca/php-7.1.10/lib/php/extensions/no-debug-zts-20160303&lt;/code&gt;目录下，将其拷贝到extensions目录下，因为在php.ini中设置的extensions_basedir为extensions目录。&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;配置完这些后，只看到有默认的SQLite数据库可用，找不到mysql，这是因为php与mysql互连的模块没有安装，继续安装pdo, pdo_mysql, mysqli模块即可。&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;配置完这些后，只看到有默认的SQLite数据库可用，找不到mysql，这是因为php与mysql互连的模块没有安装，继续安装pdo, pdo_mysql, mysqli模块即可。&lt;/p&gt;
 
 &lt;h3 id=&quot;配置owncloud&quot;&gt;配置owncloud&lt;/h3&gt;
 

@@ -138,26 +138,24 @@
 <span class="nb">sudo </span>chown <span class="nt">-R</span> phdchorus:phdchorus owncloud
 </code></pre></div>    </div>
   </li>
-  <li>添加配置文件，由于我们是编译安装的apache，配置文件的路径为<code class="highlighter-rouge">/usr/local/apache2/conf/</code>，在<code class="highlighter-rouge">extra/</code>下面新建<code class="highlighter-rouge">owncloud.conf</code>文件，并输入以下内容：</li>
-</ol>
+  <li>添加配置文件，由于我们是编译安装的apache，配置文件的路径为<code class="highlighter-rouge">/usr/local/apache2/conf/</code>，在<code class="highlighter-rouge">extra/</code>下面新建<code class="highlighter-rouge">owncloud.conf</code>文件，并输入以下内容
+    <blockquote>
+      <p>Alias /owncloud “/var/www/html/owncloud/”</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Alias /owncloud "/var/www/html/owncloud/"
+      <p>&lt;Directory /var/www/html/owncloud/&gt;<br />
+   Options +FollowSymlinks<br />
+   AllowOverride All</p>
 
-&lt;Directory /var/www/html/owncloud/&gt;
-  Options +FollowSymlinks
-  AllowOverride All
+      <IfModule mod_dav.c="">  
+    Dav off  
+   </IfModule>
 
- &lt;IfModule mod_dav.c&gt;
-  Dav off
- &lt;/IfModule&gt;
+      <p>SetEnv HOME /var/www/html/owncloud<br />
+   SetEnv HTTP_HOME /var/www/html/owncloud</p>
 
- SetEnv HOME /var/www/html/owncloud
- SetEnv HTTP_HOME /var/www/html/owncloud
-
-&lt;/Directory&gt;
-</code></pre></div></div>
-
-<ol>
+      <p>&lt;/Directory&gt;</p>
+    </blockquote>
+  </li>
   <li>打开Apache的<code class="highlighter-rouge">mod_rewrite</code>等模块
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo a2enmod rewrite
 sudo a2enmod headers
@@ -166,13 +164,13 @@ sudo a2enmod dir
 sudo a2enmod mime
 </code></pre></div>    </div>
   </li>
-  <li>输入网址<code class="highlighter-rouge">phdchorus.ucas.ac.cn/owncloud</code>出现如下错误：<code class="highlighter-rouge">Can't write into config directory!</code></li>
-</ol>
-<center>
+  <li>输入网址<code class="highlighter-rouge">phdchorus.ucas.ac.cn/owncloud</code>出现如下错误：<code class="highlighter-rouge">Can't write into config directory!</code>
+    <blockquote>
+      <center>
 <img src="/images/posts/owncloud1.png" width="100%" height="100%" />
 </center>
-
-<ol>
+    </blockquote>
+  </li>
   <li>查找解决方法可能是因为<code class="highlighter-rouge">/var/www/html/owncloud/config</code>目录的权限不够，先将owncloud下面所有文件及目录的所属者和所属组修改为www-data，然后将owncloud下面的<code class="highlighter-rouge">config</code>、<code class="highlighter-rouge">apps</code>目录的权限设置为777
     <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /var/www/html
 <span class="nb">sudo </span>chown <span class="nt">-R</span> www-data:www-data owncloud
@@ -181,13 +179,13 @@ sudo a2enmod mime
 <span class="nb">sudo </span>chmod <span class="nt">-R</span> 777 config/
 </code></pre></div>    </div>
   </li>
-  <li>上述错误解决，但是出现了php模块未安装的错误</li>
-</ol>
-<center>
+  <li>上述错误解决，但是出现了php模块未安装的错误
+    <blockquote>
+      <center>
 <img src="/images/posts/owncloud2.png" width="100%" height="100%" />
 </center>
-
-<ol>
+    </blockquote>
+  </li>
   <li>上述错误是由于我们是编译安装的php，所以也需要手动编译安装php的其他模块，下面将介绍如何安装这两个模块：
 在我们的服务器上PHP是手动编译安装的，源码位于<code class="highlighter-rouge">/usr/local/src/php-7.1.10 </code>，安装路径为<code class="highlighter-rouge">/usr/local/php-7.1.10</code></li>
 </ol>
@@ -217,9 +215,7 @@ extension=zlib.so
 </code></pre></div></div>
 <p>上述两个模块会被安装在<code class="highlighter-rouge">/usr/loca/php-7.1.10/lib/php/extensions/no-debug-zts-20160303</code>目录下，将其拷贝到extensions目录下，因为在php.ini中设置的extensions_basedir为extensions目录。</p>
 
-<ol>
-  <li>配置完这些后，只看到有默认的SQLite数据库可用，找不到mysql，这是因为php与mysql互连的模块没有安装，继续安装pdo, pdo_mysql, mysqli模块即可。</li>
-</ol>
+<p>配置完这些后，只看到有默认的SQLite数据库可用，找不到mysql，这是因为php与mysql互连的模块没有安装，继续安装pdo, pdo_mysql, mysqli模块即可。</p>
 
 <h3 id="配置owncloud">配置owncloud</h3>
 
