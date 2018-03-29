@@ -1,24 +1,138 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-01-24T09:42:19+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">抽象类与接口</title><link href="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/" rel="alternate" type="text/html" title="抽象类与接口" /><published>2018-01-15T00:00:00+08:00</published><updated>2018-01-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3</id><content type="html" xml:base="http://localhost:4000/2018/01/15/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3/">&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#抽象类和抽象方法&quot; id=&quot;markdown-toc-抽象类和抽象方法&quot;&gt;抽象类和抽象方法&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#接口&quot; id=&quot;markdown-toc-接口&quot;&gt;接口&lt;/a&gt;&lt;/li&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-29T17:04:47+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">$k$NN算法与$kd$树</title><link href="http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91/" rel="alternate" type="text/html" title="$k$NN算法与$kd$树" /><published>2018-02-02T00:00:00+08:00</published><updated>2018-02-02T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91</id><content type="html" xml:base="http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#优缼点&quot; id=&quot;markdown-toc-优缼点&quot;&gt;优缼点&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#三要素&quot; id=&quot;markdown-toc-三要素&quot;&gt;三要素&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#kd树&quot; id=&quot;markdown-toc-kd树&quot;&gt;$kd$树&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;抽象类、接口和内部类为我们提供了一种将接口与实现分享的更加结构化的方法。&lt;/p&gt;
+&lt;h4 id=&quot;优缼点&quot;&gt;优缼点&lt;/h4&gt;
 
-&lt;h3 id=&quot;抽象类和抽象方法&quot;&gt;抽象类和抽象方法&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;优点：没有显示的训练过程，理论简单，实现方便；可用于非线性分类；对数据没有假设；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;缺点：对噪声点比较敏感；内存开销大；计算开销大；&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;抽象类的作用是暴露一些接口，这些接口由抽象方法进行声明，但是类中不进行实现。抽象方法的声明所采用的语法为：&lt;/p&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;抽象类中不一定有抽象方法，但有抽象方法的一定是抽象类。&lt;/p&gt;
+&lt;h4 id=&quot;三要素&quot;&gt;三要素&lt;/h4&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;abstract&lt;/code&gt;不能与&lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;native&lt;/code&gt;并列修饰同一个方法。抽象类也不能用&lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt;修饰，这样的话，它就不能被继承，即无法实现它的抽象方法。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;距离度量&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id=&quot;接口&quot;&gt;接口&lt;/h3&gt;
+&lt;p&gt;设特征空间$\chi$是$n$维实数向量空间$R^n$，$x_i,x_j\in \chi,\quad x_i=(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)})^T, \quad x_j=(x_j^{(1)},x_j^{(2)},\cdots,x_j^{(n)})^T$, $x_i,x_j$的$L_p$距离定义为：&lt;/p&gt;
 
-&lt;p&gt;要想创建一个接口，需要用&lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt;关键字来代替&lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;关键字。就像类一样，可以在&lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt;关键字前面添加&lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt;关键字，如果不添加&lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt;关键字，则它只具有包访问权限，这样它就只能在同一个包内可用。接口也可以包含域，但是这些域隐式地是&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt;的。接口中的方法都默认是&lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt;的。&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;L_p(x_i,x_j)=\left(\sum_{l=1}^n|x_i^{(l)}-x_j^{(l)}|^p\right) ^{\frac{1}{p}}&lt;/script&gt;
 
-&lt;p&gt;接口可以通过继承来进行扩展。接口可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;extends&lt;/code&gt;来继承别的接口，而且可以使用多继承（但是类的继承不可以）&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><summary type="html"></summary></entry><entry><title type="html">内部类</title><link href="http://localhost:4000/2018/01/15/%E5%86%85%E9%83%A8%E7%B1%BB/" rel="alternate" type="text/html" title="内部类" /><published>2018-01-15T00:00:00+08:00</published><updated>2018-01-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/15/%E5%86%85%E9%83%A8%E7%B1%BB</id><content type="html" xml:base="http://localhost:4000/2018/01/15/%E5%86%85%E9%83%A8%E7%B1%BB/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;ul&gt;
+  &lt;li&gt;$k$值的选择&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;$k$值的选择会对$k$近邻法的结果产生重大影响。&lt;/p&gt;
+
+&lt;p&gt;如果选择较小的$k$值，就相当于较小的领域中的训练实例进行预测，缺点是预测结果会对近邻的实例点非常敏感。如果邻近的实例点恰巧是噪声，预测就会出错。换句话说，$k$值的减小就意味着整体模型变得复杂，容易过拟合。&lt;/p&gt;
+
+&lt;p&gt;如果选择较大的$k$值，在较大的邻域中进行预测，可以减少学习的估计误差，缺点是较远的点也会对预测起作用，使预测发生错误。这时整体的模型变得简单。&lt;/p&gt;
+
+&lt;p&gt;如果$k=N$，那么无论输入实例是什么，都将简地预测它属于训练集中实例最多的类。这时模型过于简单，完全忽略训练实例中的大量有用信息。在应用中一般使用交叉验证法选择合适的$k$值。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;分类决策规则&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一般采用多数表决，属于经验风险最小化模型。&lt;/p&gt;
+
+&lt;h4 id=&quot;kd树&quot;&gt;$kd$树&lt;/h4&gt;
+
+&lt;p&gt;$kd$树的本质是多维空间中的平衡二叉树。&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="机器学习" /><summary type="html"></summary></entry><entry><title type="html">数学基础</title><link href="http://localhost:4000/2018/02/01/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" rel="alternate" type="text/html" title="数学基础" /><published>2018-02-01T00:00:00+08:00</published><updated>2018-02-01T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/01/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80</id><content type="html" xml:base="http://localhost:4000/2018/02/01/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#高等数学&quot; id=&quot;markdown-toc-高等数学&quot;&gt;高等数学&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#连续可导可微&quot; id=&quot;markdown-toc-连续可导可微&quot;&gt;连续、可导、可微&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#偏导数&quot; id=&quot;markdown-toc-偏导数&quot;&gt;偏导数&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#方向导数&quot; id=&quot;markdown-toc-方向导数&quot;&gt;方向导数&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#梯度&quot; id=&quot;markdown-toc-梯度&quot;&gt;梯度&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#最优化问题&quot; id=&quot;markdown-toc-最优化问题&quot;&gt;最优化问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#线性代数&quot; id=&quot;markdown-toc-线性代数&quot;&gt;线性代数&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#概率分析&quot; id=&quot;markdown-toc-概率分析&quot;&gt;概率分析&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;高等数学&quot;&gt;高等数学&lt;/h1&gt;
+
+&lt;h4 id=&quot;连续可导可微&quot;&gt;连续、可导、可微&lt;/h4&gt;
+
+&lt;p&gt;函数在某一点连续的充要条件是函数在该点的函数值，等于该点的极限值；即$f(x_0)=\lim_{x \to x_0}f(x)$。或者说该点的左极限等于右极限。&lt;/p&gt;
+
+&lt;p&gt;可导的充要条件是函数在此点连续，并且左导数等于右导数。在多元函数中，可导是指所有偏导数存在。&lt;/p&gt;
+
+&lt;p&gt;在一元函数中，可微与可导是等价的，但是多元函数中，可微一定可导，但可导不一定可微。
+因为可导是指各个坐标轴方向的切线可导，例如圆锥的顶点，任意方向的方向导数都存在，所以是可导的（因为导必须指定一个方向进行求导，即求变化率），但是该点并不可微，可微要求能用切面去拟合曲面，或者切线去拟合曲线。如果该函数在该点具有一阶连续偏导数，即偏导数不仅存在，而且连续，那么在该点是可微的。一阶偏导连续，说明该函数没有折点，断点，洞点等情况，因为如果一阶偏导数连续，即在无限接近该点的邻域内，任意方向偏导数的极限都相等（连续的定义），那么就可以使用一个切面去拟合该部分曲面了，即可微。&lt;/p&gt;
+
+&lt;p&gt;可微的数学定义：如果在$x_0$到$x_0+\Delta x$区间内，函数的增量&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Delta y = f(x_0+\Delta x) - f(x_0)&lt;/script&gt;
+
+&lt;p&gt;可以表示为&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Delta y = A\Delta x + o(\Delta x)&lt;/script&gt;
+
+&lt;p&gt;其中A是常数，那么称$y=f(x)$在点$x_0$是可微的，而$A\Delta x$叫做函数$y = f(x)$在点$x_0$的微分，记作$dy$，即&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;dy = Adx&lt;/script&gt;
+
+&lt;p&gt;A即为该点切线的斜率。也可以叫做导数。&lt;/p&gt;
+
+&lt;p&gt;从上面的定义可以联想在多元情况下，即是用切面去拟合曲面，才能叫做可微。&lt;/p&gt;
+
+&lt;p&gt;（方向导是指某一个方向函数值的变化率，该方向的切线称为该方向的偏微分，所有的切线组成的切面为全微分，）&lt;/p&gt;
+
+&lt;h4 id=&quot;偏导数&quot;&gt;偏导数&lt;/h4&gt;
+
+&lt;p&gt;导数是对应一元函数的，即一元函数的变化率。而偏导数是对应于多元函数的，反应的是函数沿坐标轴方向的变化率。比如我们有函数 $z=f(x,y)$，其在$x$和$y$方向上的偏导数为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_x(x_0, y_0)=\lim_{\Delta x \to 0} \frac{f(x_0+\Delta x, y_0) - f(x_0, y_0)}{\Delta x}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f_y(x_0, y_0)=\lim_{\Delta y \to 0} \frac{f(x_0, y_0+\Delta y) - f(x_0, y_0)}{\Delta y}&lt;/script&gt;
+
+&lt;p&gt;偏导数是一个标题值。&lt;/p&gt;
+
+&lt;h4 id=&quot;方向导数&quot;&gt;方向导数&lt;/h4&gt;
+
+&lt;p&gt;方向导数即函数$f(x,y)$在点$p(x_0,y_0)$沿任意方向$l$的变化率。方向导数也是对应于多元函数。方向导数是一个标量值。所有的导数都是标量值。假设$p’(x_0+\Delta x,y_0+\Delta y)$也是直线$l$上的一点，则函数在$l$方向上的方向导数为：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial f}{\partial l} = \lim_{\rho \to 0} \frac{f(x_0+\Delta x, y_0+\Delta y) - f(x_0,y_0)}{\rho}&lt;/script&gt;
+
+&lt;p&gt;其中$\rho$为点$p$和点$p’$之间的距离。只要函数在某一点连续可微，那么函数在该点沿任意方向的方向导数都存在。但是反过来不成立。&lt;/p&gt;
+
+&lt;p&gt;上面所说的偏导数是方向导数的一种特例，也有的地方直接称方向导数为某方向上的偏导数。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/piandaoshu.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;梯度&quot;&gt;梯度&lt;/h4&gt;
+
+&lt;p&gt;假设一个函数在某一点可微，即它任意方向的偏导数都存在并且偏导连续，这就引出了梯度了定义：梯度是一个矢量，其方向上的方向导数最大，其大小正好是此最大方向导数。&lt;/p&gt;
+
+&lt;p&gt;在这里有两个疑问：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;为什么所有方向导数中只会存在一个最大值？而不是有多个最大值，或者没有最大值？&lt;/li&gt;
+  &lt;li&gt;这个最大值在哪个方向取得？值是多少？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可微说明该点所有方向的切线共面，那么在该切面中，必定有且只有一个斜率最大的切线（该斜率指该切线与xy平面的夹角形成的斜率），该方向函数值增长得最快。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/tidu.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;[1]&lt;a href=&quot;https://blog.csdn.net/huxiaokang1234/article/details/52550999&quot;&gt;https://blog.csdn.net/huxiaokang1234/article/details/52550999&lt;/a&gt;
+[2]&lt;a href=&quot;http://netedu.xauat.edu.cn/jpkc/netedu/jpkc/gdsx/homepage/5jxsd/51/513/5308/530807.htm&quot;&gt;http://netedu.xauat.edu.cn/jpkc/netedu/jpkc/gdsx/homepage/5jxsd/51/513/5308/530807.htm&lt;/a&gt;
+[3]&lt;a href=&quot;https://www.zhihu.com/question/23468713?sort=created&quot;&gt;https://www.zhihu.com/question/23468713?sort=created&lt;/a&gt;
+[4]&lt;a href=&quot;https://www.zhihu.com/question/36301367&quot;&gt;https://www.zhihu.com/question/36301367&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;最优化问题&quot;&gt;最优化问题&lt;/h1&gt;
+
+&lt;h1 id=&quot;线性代数&quot;&gt;线性代数&lt;/h1&gt;
+
+&lt;h1 id=&quot;概率分析&quot;&gt;概率分析&lt;/h1&gt;</content><author><name>elvisliu</name></author><category term="[&quot;机器学习&quot;, &quot;深度学习&quot;]" /><summary type="html"></summary></entry><entry><title type="html">内部类</title><link href="http://localhost:4000/2018/01/15/%E5%86%85%E9%83%A8%E7%B1%BB/" rel="alternate" type="text/html" title="内部类" /><published>2018-01-15T00:00:00+08:00</published><updated>2018-01-15T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/15/%E5%86%85%E9%83%A8%E7%B1%BB</id><content type="html" xml:base="http://localhost:4000/2018/01/15/%E5%86%85%E9%83%A8%E7%B1%BB/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#创建内部类&quot; id=&quot;markdown-toc-创建内部类&quot;&gt;创建内部类&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#内部类与向上转型&quot; id=&quot;markdown-toc-内部类与向上转型&quot;&gt;内部类与向上转型&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#在方法和作用域内的内部类&quot; id=&quot;markdown-toc-在方法和作用域内的内部类&quot;&gt;在方法和作用域内的内部类&lt;/a&gt;&lt;/li&gt;
@@ -100,7 +214,7 @@
   &lt;li&gt;一个匿名类，它扩展了有非默认构造器的类。&lt;/li&gt;
   &lt;li&gt;一个匿名类，它执行字段初始化。&lt;/li&gt;
   &lt;li&gt;一个匿名类，它通过实例初始化实现构造（匿名类不可能有构造器）&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><summary type="html"></summary></entry><entry><title type="html">多态</title><link href="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/" rel="alternate" type="text/html" title="多态" /><published>2018-01-11T00:00:00+08:00</published><updated>2018-01-11T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81</id><content type="html" xml:base="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">多态</title><link href="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/" rel="alternate" type="text/html" title="多态" /><published>2018-01-11T00:00:00+08:00</published><updated>2018-01-11T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81</id><content type="html" xml:base="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#方法调用绑定&quot; id=&quot;markdown-toc-方法调用绑定&quot;&gt;方法调用绑定&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#缺陷无法覆盖私有方法&quot; id=&quot;markdown-toc-缺陷无法覆盖私有方法&quot;&gt;缺陷：无法覆盖私有方法&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#缺陷无法覆盖域与静态方法&quot; id=&quot;markdown-toc-缺陷无法覆盖域与静态方法&quot;&gt;缺陷：无法覆盖域与静态方法&lt;/a&gt;&lt;/li&gt;
@@ -187,7 +301,7 @@ Grain
 Wheat
 */&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;导出类在覆盖基类的方法时，可以返回基类方法返回类型的导出类型。&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><summary type="html"></summary></entry><entry><title type="html">final关键字</title><link href="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/" rel="alternate" type="text/html" title="final关键字" /><published>2018-01-08T00:00:00+08:00</published><updated>2018-01-08T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97</id><content type="html" xml:base="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;p&gt;导出类在覆盖基类的方法时，可以返回基类方法返回类型的导出类型。&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">final关键字</title><link href="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/" rel="alternate" type="text/html" title="final关键字" /><published>2018-01-08T00:00:00+08:00</published><updated>2018-01-08T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97</id><content type="html" xml:base="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#final数据&quot; id=&quot;markdown-toc-final数据&quot;&gt;final数据&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#final参数&quot; id=&quot;markdown-toc-final参数&quot;&gt;final参数&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#final方法&quot; id=&quot;markdown-toc-final方法&quot;&gt;final方法&lt;/a&gt;&lt;/li&gt;
@@ -388,7 +502,7 @@ Wheat
   &lt;li&gt;保证所有成员变量必须私有，并且加上final修饰符&lt;/li&gt;
   &lt;li&gt;不提供改变成员变量的方法，包括setter&lt;/li&gt;
   &lt;li&gt;通过构造器初始化所有成员，进行深拷贝&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><category term="关键字" /><summary type="html"></summary></entry><entry><title type="html">云主机操作记录</title><link href="http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/" rel="alternate" type="text/html" title="云主机操作记录" /><published>2018-01-02T00:00:00+08:00</published><updated>2018-01-02T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95</id><content type="html" xml:base="http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;/ul&gt;</content><author><name>elvisliu</name></author><category term="Java" /><category term="关键字" /><summary type="html"></summary></entry><entry><title type="html">云主机操作记录</title><link href="http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/" rel="alternate" type="text/html" title="云主机操作记录" /><published>2018-01-02T00:00:00+08:00</published><updated>2018-01-02T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95</id><content type="html" xml:base="http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#jdk安装&quot; id=&quot;markdown-toc-jdk安装&quot;&gt;JDK安装&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#python相关安装&quot; id=&quot;markdown-toc-python相关安装&quot;&gt;Python相关安装&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#apache2服务器安装&quot; id=&quot;markdown-toc-apache2服务器安装&quot;&gt;Apache2服务器安装&lt;/a&gt;&lt;/li&gt;
@@ -865,7 +979,7 @@ j = 39
   &lt;li&gt;静态属性初始化完毕，代码走到静态块，打印出静态块，此时&lt;code class=&quot;highlighter-rouge&quot;&gt;n=99&lt;/code&gt;。&lt;/li&gt;
   &lt;li&gt;静态属性和静态块执行完毕，然后执行main方法中的代码&lt;code class=&quot;highlighter-rouge&quot;&gt;new InitializeDemo(&quot;init&quot;);&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;方法中创建对象，先初始化非静态属性，&lt;code class=&quot;highlighter-rouge&quot;&gt;private int j = print(&quot;j&quot;);&lt;/code&gt;打印&lt;code class=&quot;highlighter-rouge&quot;&gt;j&lt;/code&gt;，然后执行构造块，最后执行构造方法。&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="Thinking in Java" /><category term="构造过程 笔记" /><summary type="html"></summary></entry><entry><title type="html">Java实现Swap引发的一些思考</title><link href="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="Java实现Swap引发的一些思考" /><published>2017-12-20T00:00:00+08:00</published><updated>2017-12-20T00:00:00+08:00</updated><id>http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98</id><content type="html" xml:base="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="Java" /><category term="构造过程 笔记" /><summary type="html"></summary></entry><entry><title type="html">Java实现Swap引发的一些思考</title><link href="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" rel="alternate" type="text/html" title="Java实现Swap引发的一些思考" /><published>2017-12-20T00:00:00+08:00</published><updated>2017-12-20T00:00:00+08:00</updated><id>http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98</id><content type="html" xml:base="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#补充&quot; id=&quot;markdown-toc-补充&quot;&gt;补充：&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#参考&quot; id=&quot;markdown-toc-参考&quot;&gt;&lt;em&gt;参考&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1091,69 +1205,4 @@ User caffe
 ProxyCommand nc -x 47.95.213.90:6521 %h %p
 Hostname 10.136.140.136
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;然后就只需要使用&lt;code class=&quot;highlighter-rouge&quot;&gt;spawn ssh gpus&lt;/code&gt;然后其他部分不变，实现通过代理连接远程服务器&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="Shell" /><category term="linux shell" /><summary type="html"></summary></entry><entry><title type="html">TODOList</title><link href="http://localhost:4000/2017/11/17/TODO/" rel="alternate" type="text/html" title="TODOList" /><published>2017-11-17T00:00:00+08:00</published><updated>2017-11-17T00:00:00+08:00</updated><id>http://localhost:4000/2017/11/17/TODO</id><content type="html" xml:base="http://localhost:4000/2017/11/17/TODO/">&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#todo&quot; id=&quot;markdown-toc-todo&quot;&gt;TODO&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;todo&quot;&gt;TODO&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Date&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Content&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Important Events&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Status&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-12-22&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;小电影^,^&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;a href=&quot;https://www.douban.com/note/649542368&quot;&gt;https://www.douban.com/note/649542368&lt;/a&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-12-12&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;故宫看雪&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;下的第一场雪一起去看&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-12-06&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;一起看《我在故宫修文物》&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;还有国家宝藏也很好看&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-11-28&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;一起看《闪光少女》和《误杀瞒天记》&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-11-23&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;一起看《声之形》&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;突然又不想和我一起看了，要吃独食，用QQ传了十次没传成功，吃独食是不可能的了&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-11-17&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;一起看《指环王1，2，3》&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-11-17&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;一起看《霍比特人1，2，3》&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2017-08-01&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;一起看《你的名字》&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt; &lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;未完成&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name>elvisliu</name></author><category term="Beautiful Love" /><category term="Love todo list" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;然后就只需要使用&lt;code class=&quot;highlighter-rouge&quot;&gt;spawn ssh gpus&lt;/code&gt;然后其他部分不变，实现通过代理连接远程服务器&lt;/p&gt;</content><author><name>elvisliu</name></author><category term="Shell" /><category term="linux shell" /><summary type="html"></summary></entry></feed>
