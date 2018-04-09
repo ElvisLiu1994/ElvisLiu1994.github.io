@@ -131,6 +131,30 @@
     } ,
   
     {
+      "title"    : "SVM支持向量机",
+      "category" : "机器学习",
+      "url"      : "http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/"
+    } ,
+  
+    {
+      "title"    : "cs231n 第二讲 图像分类",
+      "category" : "cs231n",
+      "url"      : "http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"
+    } ,
+  
+    {
+      "title"    : "空间金字塔池化与ROI池化",
+      "category" : "深度学习",
+      "url"      : "http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96/"
+    } ,
+  
+    {
+      "title"    : "C++中的名字查找",
+      "category" : "C++",
+      "url"      : "http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE/"
+    } ,
+  
+    {
       "title"    : "Android Studio",
       "category" : "Android",
       "url"      : "http://localhost:4000/wiki/android-studio/"
