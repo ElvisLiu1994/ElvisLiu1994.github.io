@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-09T11:08:50+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">C++中的名字查找</title><link href="http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE/" rel="alternate" type="text/html" title="C++中的名字查找" /><published>2018-02-04T00:00:00+08:00</published><updated>2018-02-04T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE</id><content type="html" xml:base="http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE/">&lt;p&gt;今天在复习算法的时候，想用一个排序的模板类作为各种排序算法的基类，不同的类实现不同的sort函数，由于可能对于不同类型的数据进行排序，所以使用了模板方法，排序的数据类型为未知类型。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-09T20:32:12+08:00</updated><id>http://localhost:4000/</id><title type="html">Elvis Liu</title><subtitle>个人博客</subtitle><author><name>elvisliu</name></author><entry><title type="html">C++中的名字查找</title><link href="http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE/" rel="alternate" type="text/html" title="C++中的名字查找" /><published>2018-02-04T00:00:00+08:00</published><updated>2018-02-04T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE</id><content type="html" xml:base="http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#普通类的名字查找过程&quot; id=&quot;markdown-toc-普通类的名字查找过程&quot;&gt;普通类的名字查找过程&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#模板类的名字查找过程&quot; id=&quot;markdown-toc-模板类的名字查找过程&quot;&gt;模板类的名字查找过程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;今天在复习算法的时候，想用一个排序的模板类作为各种排序算法的基类，不同的类实现不同的sort函数，由于可能对于不同类型的数据进行排序，所以使用了模板方法，排序的数据类型为未知类型。&lt;/p&gt;
 
 &lt;p&gt;模板类的实现如下所示：&lt;/p&gt;
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;template&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -135,11 +140,51 @@
 &lt;ul&gt;
   &lt;li&gt;一种是直接在Selection的模板定义里面调用less和exch时指定Sort&amp;lt;T::less和Sort&lt;T&gt;::exch，这样的话，在模板定义阶段，编译知道这两个方法应该去Sort&lt;T&gt;模板类中去查找，这样就可以在实例化阶段找到正确的函数。&lt;/T&gt;&lt;/T&gt;&lt;/li&gt;
   &lt;li&gt;另一种方法是使用this指针，尽管模板定义阶段没办法找到less和exch，但是如果使用this-&amp;gt;less()和this-&amp;gt;exch()，这就告诉了编译器，这两个方法是成员函数，不在Selection类就在它的基类里，到了模板实例化阶段，此时编译器知道查找的是一个成员函数，那么就会在Selection类中查，如果没有找到，就会去它的基类里面找，于是成功找到！&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>elvisliu</name></author><summary type="html">今天在复习算法的时候，想用一个排序的模板类作为各种排序算法的基类，不同的类实现不同的sort函数，由于可能对于不同类型的数据进行排序，所以使用了模板方法，排序的数据类型为未知类型。</summary></entry><entry><title type="html">空间金字塔池化与ROI池化</title><link href="http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96/" rel="alternate" type="text/html" title="空间金字塔池化与ROI池化" /><published>2018-02-03T00:00:00+08:00</published><updated>2018-02-03T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96</id><content type="html" xml:base="http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96/">&lt;h4 id=&quot;池化的作用&quot;&gt;池化的作用&lt;/h4&gt;
+&lt;/ul&gt;</content><author><name>elvisliu</name></author><summary type="html"></summary></entry><entry><title type="html">空间金字塔池化与ROI池化</title><link href="http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96/" rel="alternate" type="text/html" title="空间金字塔池化与ROI池化" /><published>2018-02-03T00:00:00+08:00</published><updated>2018-02-03T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96</id><content type="html" xml:base="http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#池化的作用&quot; id=&quot;markdown-toc-池化的作用&quot;&gt;池化的作用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#空间金字塔池化&quot; id=&quot;markdown-toc-空间金字塔池化&quot;&gt;空间金字塔池化&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#roi池化&quot; id=&quot;markdown-toc-roi池化&quot;&gt;ROI池化&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;池化的作用&quot;&gt;池化的作用&lt;/h4&gt;
 
 &lt;h4 id=&quot;空间金字塔池化&quot;&gt;空间金字塔池化&lt;/h4&gt;
 
-&lt;h4 id=&quot;roi池化&quot;&gt;ROI池化&lt;/h4&gt;</content><author><name>elvisliu</name></author><summary type="html">池化的作用</summary></entry><entry><title type="html">cs231n 第二讲 图像分类</title><link href="http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" rel="alternate" type="text/html" title="cs231n 第二讲 图像分类" /><published>2018-02-03T00:00:00+08:00</published><updated>2018-02-03T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB</id><content type="html" xml:base="http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">&lt;h4 id=&quot;数据驱动方法&quot;&gt;数据驱动方法&lt;/h4&gt;
+&lt;h4 id=&quot;roi池化&quot;&gt;ROI池化&lt;/h4&gt;</content><author><name>elvisliu</name></author><summary type="html"></summary></entry><entry><title type="html">偏差与方差</title><link href="http://localhost:4000/2018/02/03/%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/" rel="alternate" type="text/html" title="偏差与方差" /><published>2018-02-03T00:00:00+08:00</published><updated>2018-02-03T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/03/%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE</id><content type="html" xml:base="http://localhost:4000/2018/02/03/%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#欠拟合与过拟合&quot; id=&quot;markdown-toc-欠拟合与过拟合&quot;&gt;欠拟合与过拟合&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#偏差-bias&quot; id=&quot;markdown-toc-偏差-bias&quot;&gt;偏差 bias&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#方差-variance&quot; id=&quot;markdown-toc-方差-variance&quot;&gt;方差 variance&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#学习曲线&quot; id=&quot;markdown-toc-学习曲线&quot;&gt;学习曲线&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#一般的解决办法&quot; id=&quot;markdown-toc-一般的解决办法&quot;&gt;一般的解决办法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;欠拟合与过拟合&quot;&gt;欠拟合与过拟合&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/bias1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;偏差-bias&quot;&gt;偏差 bias&lt;/h4&gt;
+
+&lt;p&gt;偏差一般用来描述模型的训练误差，即训练集中模型计算得到的值与训练数据真实值之间的误差，能够用来形容模型的拟合程度。当偏差比较大时，说明模型欠拟合，在训练集上的误差仍然比较大；当偏差比较小时，说明模型的拟合程度较好，但此时也可能出现了过拟合的情况，而过拟合需要用方差来表示。&lt;/p&gt;
+
+&lt;h4 id=&quot;方差-variance&quot;&gt;方差 variance&lt;/h4&gt;
+
+&lt;p&gt;方差一般用来描述模型的泛化误差，即使用验证集或者测试集时，模型得到的预测值与真实值之间的误差即为方差，因为该部分数据是未参与训练的数据，所以方差可以用来形容模型的泛化能力，即模型对未知数据的预测能力。当方差较大时（偏差很小时），说明模型过拟合，需要减少模型复杂度，或者使用更多的训练数据；当方差较小时，模型的泛化能力较好。&lt;/p&gt;
+
+&lt;h4 id=&quot;学习曲线&quot;&gt;学习曲线&lt;/h4&gt;
+
+&lt;p&gt;下左图为欠拟合的学习曲线，右图为过拟合的学习曲线&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/bias3.png&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;/images/posts/bias4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;一般的解决办法&quot;&gt;一般的解决办法&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/bias2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>elvisliu</name></author><summary type="html"></summary></entry><entry><title type="html">cs231n 第二讲 图像分类</title><link href="http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" rel="alternate" type="text/html" title="cs231n 第二讲 图像分类" /><published>2018-02-03T00:00:00+08:00</published><updated>2018-02-03T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB</id><content type="html" xml:base="http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#数据驱动方法&quot; id=&quot;markdown-toc-数据驱动方法&quot;&gt;数据驱动方法&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#线性分类方法&quot; id=&quot;markdown-toc-线性分类方法&quot;&gt;线性分类方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;数据驱动方法&quot;&gt;数据驱动方法&lt;/h4&gt;
 
 &lt;p&gt;基于规则的方法无法扩展到较大的数据集，针对不同类的图像可能需要制定不一样的判别规则，所以换一个角度，从数据出发。&lt;/p&gt;
 
@@ -152,7 +197,16 @@
 &lt;p&gt;参数W的每一行为一个分类模板，可以模拟该模板下不同像素点类型得分的高低；而偏置项b不直接参与像素点的计算，表示一些数据整体的信息，比如某一类的比重比较大时，它的b相应地也会比较大。如果从划分超平面来理解的话，W的每一行加上相应位置的b构成一个分类超平面。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/posts/linear3.png&quot; alt=&quot;&quot; /&gt;
-&lt;img src=&quot;/images/posts/linear4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>elvisliu</name></author><summary type="html">数据驱动方法</summary></entry><entry><title type="html">SVM支持向量机</title><link href="http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/" rel="alternate" type="text/html" title="SVM支持向量机" /><published>2018-02-03T00:00:00+08:00</published><updated>2018-02-03T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA</id><content type="html" xml:base="http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">&lt;h4 id=&quot;简介&quot;&gt;简介&lt;/h4&gt;
+&lt;img src=&quot;/images/posts/linear4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name>elvisliu</name></author><summary type="html"></summary></entry><entry><title type="html">SVM支持向量机</title><link href="http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/" rel="alternate" type="text/html" title="SVM支持向量机" /><published>2018-02-03T00:00:00+08:00</published><updated>2018-02-03T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA</id><content type="html" xml:base="http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#简介&quot; id=&quot;markdown-toc-简介&quot;&gt;简介&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#函数间隔和几何间隔&quot; id=&quot;markdown-toc-函数间隔和几何间隔&quot;&gt;函数间隔和几何间隔&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#线性可分支持向量机最大几何间隔法&quot; id=&quot;markdown-toc-线性可分支持向量机最大几何间隔法&quot;&gt;线性可分支持向量机–最大几何间隔法&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#学习的对偶算法&quot; id=&quot;markdown-toc-学习的对偶算法&quot;&gt;学习的对偶算法&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;简介&quot;&gt;简介&lt;/h4&gt;
 
 &lt;p&gt;支持向量机是一种二类分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器，间隔最大使它有别于感知机。支持向量机包括核技巧，这使它成为实质上的非线性分类器。支持向量机的学习策略就是间隔最大化，可形式化为一个求解凸二次规划的最优化算法。&lt;/p&gt;
 
@@ -194,7 +248,7 @@ s.t. \quad &amp;y_i\left(w \cdot x_i + b\right) - 1 \geq 0, \quad i = 1,2,\cdots
 
 &lt;p&gt;这是一个凸二次规划问题，我们可以直接用求解约束最优化问题的方法来进行求解参数，而不使用梯度下降法这样的迭代求解方法。&lt;/p&gt;
 
-&lt;h6 id=&quot;学习的对偶算法&quot;&gt;学习的对偶算法&lt;/h6&gt;</content><author><name>elvisliu</name></author><summary type="html">简介</summary></entry><entry><title type="html">$k$NN算法与$kd$树</title><link href="http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91/" rel="alternate" type="text/html" title="$k$NN算法与$kd$树" /><published>2018-02-02T00:00:00+08:00</published><updated>2018-02-02T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91</id><content type="html" xml:base="http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;h6 id=&quot;学习的对偶算法&quot;&gt;学习的对偶算法&lt;/h6&gt;</content><author><name>elvisliu</name></author><summary type="html"></summary></entry><entry><title type="html">$k$NN算法与$kd$树</title><link href="http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91/" rel="alternate" type="text/html" title="$k$NN算法与$kd$树" /><published>2018-02-02T00:00:00+08:00</published><updated>2018-02-02T00:00:00+08:00</updated><id>http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91</id><content type="html" xml:base="http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91/">&lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#优缼点&quot; id=&quot;markdown-toc-优缼点&quot;&gt;优缼点&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#三要素&quot; id=&quot;markdown-toc-三要素&quot;&gt;三要素&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#kd树&quot; id=&quot;markdown-toc-kd树&quot;&gt;$kd$树&lt;/a&gt;&lt;/li&gt;
@@ -249,7 +303,13 @@ s.t. \quad &amp;y_i\left(w \cdot x_i + b\right) - 1 \geq 0, \quad i = 1,2,\cdots
       &lt;li&gt;&lt;a href=&quot;#梯度&quot; id=&quot;markdown-toc-梯度&quot;&gt;梯度&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#最优化问题&quot; id=&quot;markdown-toc-最优化问题&quot;&gt;最优化问题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#优化方法&quot; id=&quot;markdown-toc-优化方法&quot;&gt;优化方法&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#拉格朗日乘子法&quot; id=&quot;markdown-toc-拉格朗日乘子法&quot;&gt;拉格朗日乘子法&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#梯度下降法&quot; id=&quot;markdown-toc-梯度下降法&quot;&gt;梯度下降法&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#牛顿法&quot; id=&quot;markdown-toc-牛顿法&quot;&gt;牛顿法&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#循环坐标下降法&quot; id=&quot;markdown-toc-循环坐标下降法&quot;&gt;循环坐标下降法&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#线性代数&quot; id=&quot;markdown-toc-线性代数&quot;&gt;线性代数&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#概率分析&quot; id=&quot;markdown-toc-概率分析&quot;&gt;概率分析&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -324,7 +384,17 @@ s.t. \quad &amp;y_i\left(w \cdot x_i + b\right) - 1 \geq 0, \quad i = 1,2,\cdots
 [3]&lt;a href=&quot;https://www.zhihu.com/question/23468713?sort=created&quot;&gt;https://www.zhihu.com/question/23468713?sort=created&lt;/a&gt;
 [4]&lt;a href=&quot;https://www.zhihu.com/question/36301367&quot;&gt;https://www.zhihu.com/question/36301367&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;最优化问题&quot;&gt;最优化问题&lt;/h1&gt;
+&lt;h1 id=&quot;优化方法&quot;&gt;优化方法&lt;/h1&gt;
+
+&lt;h4 id=&quot;拉格朗日乘子法&quot;&gt;拉格朗日乘子法&lt;/h4&gt;
+
+&lt;p&gt;该方法是一种寻找多元函数在一组约束下的极佳的方法。通过引入拉格朗日乘子，可将有$d$个变量与$k$个约束条件的最优化问题转化为具有$d+k$个变量的无约束优化问题求解。&lt;/p&gt;
+
+&lt;h4 id=&quot;梯度下降法&quot;&gt;梯度下降法&lt;/h4&gt;
+
+&lt;h4 id=&quot;牛顿法&quot;&gt;牛顿法&lt;/h4&gt;
+
+&lt;h4 id=&quot;循环坐标下降法&quot;&gt;循环坐标下降法&lt;/h4&gt;
 
 &lt;h1 id=&quot;线性代数&quot;&gt;线性代数&lt;/h1&gt;
 
@@ -698,77 +768,4 @@ Wheat
   &lt;li&gt;保证所有成员变量必须私有，并且加上final修饰符&lt;/li&gt;
   &lt;li&gt;不提供改变成员变量的方法，包括setter&lt;/li&gt;
   &lt;li&gt;通过构造器初始化所有成员，进行深拷贝&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>elvisliu</name></author><category term="Java" /><category term="关键字" /><summary type="html"></summary></entry><entry><title type="html">云主机操作记录</title><link href="http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/" rel="alternate" type="text/html" title="云主机操作记录" /><published>2018-01-02T00:00:00+08:00</published><updated>2018-01-02T00:00:00+08:00</updated><id>http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95</id><content type="html" xml:base="http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#jdk安装&quot; id=&quot;markdown-toc-jdk安装&quot;&gt;JDK安装&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#python相关安装&quot; id=&quot;markdown-toc-python相关安装&quot;&gt;Python相关安装&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#apache2服务器安装&quot; id=&quot;markdown-toc-apache2服务器安装&quot;&gt;Apache2服务器安装&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#tomcat85安装&quot; id=&quot;markdown-toc-tomcat85安装&quot;&gt;Tomcat8.5安装&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;jdk安装&quot;&gt;JDK安装&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;从 &lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/index.html&quot;&gt;官网&lt;/a&gt; 下载官方安装包，下载的版本是&lt;code class=&quot;highlighter-rouge&quot;&gt;JDK8&lt;/code&gt;。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;解压，然后移动到&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local&lt;/code&gt;目录下。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;修改&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.profile&lt;/code&gt;配置环境变量，在文件尾部添加:
-    &lt;blockquote&gt;
-
-      &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/loca/jdk1.8.0_144
-
-&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/bin:&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;输入&lt;code class=&quot;highlighter-rouge&quot;&gt;java -version&lt;/code&gt;显示如下：
-    &lt;blockquote&gt;
-      &lt;center&gt;
-&lt;img src=&quot;/images/posts/aliyun1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
-&lt;/center&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;python相关安装&quot;&gt;Python相关安装&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Ubuntu 16.04 LTS&lt;/code&gt;自带有&lt;code class=&quot;highlighter-rouge&quot;&gt;python2&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;python3&lt;/code&gt;。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;这里我们先安装&lt;code class=&quot;highlighter-rouge&quot;&gt;pip3&lt;/code&gt;，并升级到最新版本：&lt;/p&gt;
-    &lt;blockquote&gt;
-
-      &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get install python3-pip
-
-pip3 install &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;apache2服务器安装&quot;&gt;Apache2服务器安装&lt;/h3&gt;
-
-&lt;p&gt;直接使用&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install apache2&lt;/code&gt;即可完成安装，然后使用&lt;code class=&quot;highlighter-rouge&quot;&gt;service apache2 start&lt;/code&gt;开启服务，浏览器输入网址&lt;code class=&quot;highlighter-rouge&quot;&gt;47.94.202.241&lt;/code&gt;查看到apache欢迎页，则说明安装成功。&lt;/p&gt;
-
-&lt;p&gt;apache的配置路径为&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/apache2/&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;tomcat85安装&quot;&gt;Tomcat8.5安装&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;从 &lt;a href=&quot;http://tomcat.apache.org/download-80.cgi&quot;&gt;官网&lt;/a&gt; 下载二进制包，下载的版本是&lt;code class=&quot;highlighter-rouge&quot;&gt;8.5.24&lt;/code&gt;。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;解压后移动至&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local&lt;/code&gt;路径下，最终目录即&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/apache-tomcat-8.5.24&lt;/code&gt;。&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;进入&lt;code class=&quot;highlighter-rouge&quot;&gt;bin&lt;/code&gt;目录下，&lt;code class=&quot;highlighter-rouge&quot;&gt;vim startup.sh&lt;/code&gt;，在最后一行前面添加&lt;code class=&quot;highlighter-rouge&quot;&gt;CATALINA_HOME=/usr/local/apache-tomcat-8.5.24&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;进入阿里云控制台，安全组，添加规则，将8080端口的入方向打开。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>elvisliu</name></author><category term="重要记录" /><category term="linux ubuntu aliyun 阿里云" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>elvisliu</name></author><category term="Java" /><category term="关键字" /><summary type="html"></summary></entry></feed>

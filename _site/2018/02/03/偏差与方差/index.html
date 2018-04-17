@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Categories &mdash; Elvis Liu</title>
+    <title>偏差与方差 &mdash; Elvis Liu</title>
     <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-css/css/primer.css">
     <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-markdown/dist/user-content.min.css">
     <link rel="stylesheet" href="http://localhost:4000/assets/vendor/octicons/octicons/octicons.css">
@@ -21,26 +21,28 @@
     
 
     
-    <link rel="canonical" href="http://localhost:4000/categories/">
+    <link rel="canonical" href="http://localhost:4000/2018/02/03/%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/">
     <link rel="alternate" type="application/atom+xml" title="Elvis Liu" href="http://localhost:4000/feed.xml">
     <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
     
-    <meta property="og:title" content="Categories">
+    <meta property="og:title" content="偏差与方差">
       
-    <meta name="keywords" content="分类">
-    <meta name="og:keywords" content="分类">
+    <meta name="keywords" content="bias variance">
+    <meta name="og:keywords" content="bias variance">
       
-    <meta name="description" content="哈哈，你找到了我的文章基因库">
-    <meta name="og:description" content="哈哈，你找到了我的文章基因库">
+    <meta name="description" content="">
+    <meta name="og:description" content="">
       
     
     
         
     
-    <meta property="og:url" content="http://localhost:4000/categories/">
+    <meta property="og:url" content="http://localhost:4000/2018/02/03/%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/">
     <meta property="og:site_name" content="Elvis Liu">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-02-03">
     
     <script src="http://localhost:4000/assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="http://localhost:4000/assets/js/jquery-ui.js"></script>
@@ -77,7 +79,7 @@
                 
                 <a href="http://localhost:4000/" class=" site-header-nav-item" target="" title="首页">首页</a>
                 
-                <a href="http://localhost:4000/categories/" class=" selected  site-header-nav-item" target="" title="分类">分类</a>
+                <a href="http://localhost:4000/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
                 
                 <a href="http://localhost:4000/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
                 
@@ -90,178 +92,81 @@
     </header>
     <!-- / header -->
 
-    <section class="collection-head small geopattern" data-pattern-id="Categories">
-    <div class="container">
-        <div class="columns">
-            <div class="column three-fourths">
-                <div class="collection-title">
-                    <h1 class="collection-header">Categories</h1>
-                </div>
-            </div>
+    <section class="collection-head small geopattern" data-pattern-id="偏差与方差">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">偏差与方差</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/02/03
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="http://localhost:4000/categories/#机器学习" title="机器学习">机器学习</a>
+          </span>
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="http://localhost:4000/categories/#深度学习" title="深度学习">深度学习</a>
+          </span>
+          
         </div>
+      </div>
     </div>
+  </div>
+</div>
 </section>
 <!-- / .banner -->
 <section class="container content">
-    <div class="columns">
-        <div class="column three-fourths" >
-            <article class="article-content markdown-body">
-                <section class="container posts-content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <ul id="markdown-toc">
+  <li><a href="#欠拟合与过拟合" id="markdown-toc-欠拟合与过拟合">欠拟合与过拟合</a></li>
+  <li><a href="#偏差-bias" id="markdown-toc-偏差-bias">偏差 bias</a></li>
+  <li><a href="#方差-variance" id="markdown-toc-方差-variance">方差 variance</a></li>
+  <li><a href="#学习曲线" id="markdown-toc-学习曲线">学习曲线</a></li>
+  <li><a href="#一般的解决办法" id="markdown-toc-一般的解决办法">一般的解决办法</a></li>
+</ul>
 
+<h4 id="欠拟合与过拟合">欠拟合与过拟合</h4>
 
-<h3>Beautiful Love</h3>
-<ol class="posts-list" id="Beautiful Love">
+<p><img src="/images/posts/bias1.png" alt="" /></p>
 
-<li class="posts-list-item">
-<span class="posts-list-meta">2017-11-17</span>
-<a class="posts-list-name" href="http://localhost:4000/2017/11/17/TODO/">TODOList</a>
-</li>
+<h4 id="偏差-bias">偏差 bias</h4>
 
-</ol>
+<p>偏差一般用来描述模型的训练误差，即训练集中模型计算得到的值与训练数据真实值之间的误差，能够用来形容模型的拟合程度。当偏差比较大时，说明模型欠拟合，在训练集上的误差仍然比较大；当偏差比较小时，说明模型的拟合程度较好，但此时也可能出现了过拟合的情况，而过拟合需要用方差来表示。</p>
 
-<h3>C++</h3>
-<ol class="posts-list" id="C++">
+<h4 id="方差-variance">方差 variance</h4>
 
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-04</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/04/C++%E4%B8%AD%E7%9A%84%E5%90%8D%E5%AD%97%E6%9F%A5%E6%89%BE/">C++中的名字查找</a>
-</li>
+<p>方差一般用来描述模型的泛化误差，即使用验证集或者测试集时，模型得到的预测值与真实值之间的误差即为方差，因为该部分数据是未参与训练的数据，所以方差可以用来形容模型的泛化能力，即模型对未知数据的预测能力。当方差较大时（偏差很小时），说明模型过拟合，需要减少模型复杂度，或者使用更多的训练数据；当方差较小时，模型的泛化能力较好。</p>
 
-</ol>
+<h4 id="学习曲线">学习曲线</h4>
 
-<h3>Caffe</h3>
-<ol class="posts-list" id="Caffe">
+<p>下左图为欠拟合的学习曲线，右图为过拟合的学习曲线</p>
 
-<li class="posts-list-item">
-<span class="posts-list-meta">2017-11-16</span>
-<a class="posts-list-name" href="http://localhost:4000/2017/11/16/Caffe%E4%B8%AD%E7%9A%84%E5%8D%B7%E7%A7%AF%E8%AE%A1%E7%AE%97/">Caffe中的卷积计算</a>
-</li>
+<p><img src="/images/posts/bias3.png" alt="" />
+<img src="/images/posts/bias4.png" alt="" /></p>
 
-</ol>
+<h4 id="一般的解决办法">一般的解决办法</h4>
 
-<h3>Java</h3>
-<ol class="posts-list" id="Java">
+<p><img src="/images/posts/bias2.png" alt="" /></p>
 
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-01-15</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/01/15/%E5%86%85%E9%83%A8%E7%B1%BB/">内部类</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-01-11</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/01/11/%E5%A4%9A%E6%80%81/">多态</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-01-08</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/01/08/fianl%E5%85%B3%E9%94%AE%E5%AD%97/">final关键字</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2017-12-30</span>
-<a class="posts-list-name" href="http://localhost:4000/2017/12/30/Java%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E6%B8%85%E7%90%86/">Java初始化与清理</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2017-12-20</span>
-<a class="posts-list-name" href="http://localhost:4000/2017/12/20/Swap%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">Java实现Swap引发的一些思考</a>
-</li>
-
-</ol>
-
-<h3>Shell</h3>
-<ol class="posts-list" id="Shell">
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2017-12-19</span>
-<a class="posts-list-name" href="http://localhost:4000/2017/12/19/%E5%AE%9E%E7%94%A8Shell/">实用Shell</a>
-</li>
-
-</ol>
-
-<h3>cs231n</h3>
-<ol class="posts-list" id="cs231n">
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-03</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/03/cs231n%E7%AC%AC%E4%BA%8C%E8%AE%B2%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">cs231n 第二讲 图像分类</a>
-</li>
-
-</ol>
-
-<h3>机器学习</h3>
-<ol class="posts-list" id="机器学习">
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-03</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/03/%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/">偏差与方差</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-03</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/03/SVM%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/">SVM支持向量机</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-02</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/02/kNN%E7%AE%97%E6%B3%95%E4%B8%8Ekd%E6%A0%91/">$k$NN算法与$kd$树</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-01</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/01/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
-</li>
-
-</ol>
-
-<h3>深度学习</h3>
-<ol class="posts-list" id="深度学习">
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-03</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/03/%E9%87%91%E5%AD%97%E5%A1%94%E6%B1%A0%E5%8C%96%E4%B8%8EROI%E6%B1%A0%E5%8C%96/">空间金字塔池化与ROI池化</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-03</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/03/%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE/">偏差与方差</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-02-01</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/02/01/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">数学基础</a>
-</li>
-
-</ol>
-
-<h3>重要记录</h3>
-<ol class="posts-list" id="重要记录">
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-01-02</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/01/02/%E4%BA%91%E4%B8%BB%E6%9C%BA%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">云主机操作记录</a>
-</li>
-
-<li class="posts-list-item">
-<span class="posts-list-meta">2018-01-02</span>
-<a class="posts-list-name" href="http://localhost:4000/2018/01/02/owncloud%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">owncloud安装配置</a>
-</li>
-
-</ol>
-
-</section>
-<!-- /section.content -->
-
-            </article>
-            <div class="share">
-                <!-- <div class="share-component"></div> -->
-            </div>
-            <div class="comment">
-                
-            </div>
-        </div>
-        <div class="column one-fourth">
-            
+    </article>
+    <div class="share">
+      <!-- <div class="share-component"></div> -->
+    </div>
+    <div class="comment">
+      
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
 <h3>Search</h3>
 <div id="site_search">
     <input type="text" id="search_box" placeholder="Search">
@@ -286,71 +191,22 @@ SimpleJekyllSearch({
 })
 </script>
 
-            
-<h3>Blog Categories</h3>
-<div id="blog-categories">
-  <ul class="list-group">
     
+
     
-    <li class="list-group-item">
-    <a href="#Beautiful Love">Beautiful Love</a>
-    <span class="badge">1</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#C++">C++</a>
-    <span class="badge">1</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#Caffe">Caffe</a>
-    <span class="badge">1</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#Java">Java</a>
-    <span class="badge">5</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#Shell">Shell</a>
-    <span class="badge">1</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#cs231n">cs231n</a>
-    <span class="badge">1</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#机器学习">机器学习</a>
-    <span class="badge">4</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#深度学习">深度学习</a>
-    <span class="badge">3</span>
-    </li>
-    
-    <li class="list-group-item">
-    <a href="#重要记录">重要记录</a>
-    <span class="badge">2</span>
-    </li>
-    
-  </ul>
+<h3 class="post-directory-title mobile-hidden">Table of Contents</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
 </div>
 
-<script type="text/javascript">
+<script src="http://localhost:4000/assets/js/jquery.toc.js"></script>
 
-  $(document).ready(function(){
-    $("#blog-categories li").css('text-transform','capitalize')
-  });
-
-</script>
-
-
-        </div>
-    </div>
+  </div>
+</div>
 </section>
 <!-- /section.content -->
 
