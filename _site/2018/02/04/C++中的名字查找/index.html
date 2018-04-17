@@ -30,8 +30,8 @@
     <meta name="keywords" content="基础">
     <meta name="og:keywords" content="基础">
       
-    <meta name="description" content="今天在复习算法的时候，想用一个排序的模板类作为各种排序算法的基类，不同的类实现不同的sort函数，由于可能对于不同类型的数据进行排序，所以使用了模板方法，排序的数据类型为未知类型。">
-    <meta name="og:description" content="今天在复习算法的时候，想用一个排序的模板类作为各种排序算法的基类，不同的类实现不同的sort函数，由于可能对于不同类型的数据进行排序，所以使用了模板方法，排序的数据类型为未知类型。">
+    <meta name="description" content="">
+    <meta name="og:description" content="">
       
     
     
@@ -121,7 +121,12 @@
 <div class="columns">
   <div class="column three-fourths" >
     <article class="article-content markdown-body">
-    <p>今天在复习算法的时候，想用一个排序的模板类作为各种排序算法的基类，不同的类实现不同的sort函数，由于可能对于不同类型的数据进行排序，所以使用了模板方法，排序的数据类型为未知类型。</p>
+    <ul id="markdown-toc">
+  <li><a href="#普通类的名字查找过程" id="markdown-toc-普通类的名字查找过程">普通类的名字查找过程</a></li>
+  <li><a href="#模板类的名字查找过程" id="markdown-toc-模板类的名字查找过程">模板类的名字查找过程</a></li>
+</ul>
+
+<p>今天在复习算法的时候，想用一个排序的模板类作为各种排序算法的基类，不同的类实现不同的sort函数，由于可能对于不同类型的数据进行排序，所以使用了模板方法，排序的数据类型为未知类型。</p>
 
 <p>模板类的实现如下所示：</p>
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
