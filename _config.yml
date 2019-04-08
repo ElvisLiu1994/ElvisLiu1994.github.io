@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: http://liujing.online
+url: https://elvisliu.github.io
 date_format: "ordinal"
 title: Elvis Liu
 subtitle: EEE
